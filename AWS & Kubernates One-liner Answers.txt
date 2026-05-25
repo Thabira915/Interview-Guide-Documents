@@ -1,0 +1,73 @@
+AWS
+======
+IAM  - Manages users, roles, groups, and permissions securely in AWS.
+S3  - Scalable object storage service used to store files, backups, logs, and static content.
+EC2  - Virtual server service in AWS used to run applications on scalable compute instances. (Virtual Machine)
+Elastic BeanStalk  - PaaS service that automatically deploys, manages, and scales applications.
+AWS Lambda  - Serverless compute service that runs code without managing servers.
+AWS Dynamo DB  - Fully managed NoSQL database with low latency and automatic scaling.
+AWS Secret Manager  - Securely stores and manages secrets like DB passwords and API keys.
+AWS Certificate Manager  - Manages SSL/TLS certificates for secure HTTPS communication.
+AWS RDS  - Managed relational database service supporting MySQL, PostgreSQL, Oracle, etc.
+SQS - Message queue service used for decoupling and asynchronous communication between services.
+SNS - Pub/Sub notification service used to send messages to multiple subscribers.
+EKS - Managed Kubernetes service used to deploy and manage containerized applications.
+ECS — AWS container orchestration service for running Docker containers.
+Aurora DB - High-performance managed relational database compatible with MySQL and PostgreSQL.
+AWS MSK - Fully managed Apache Kafka service for real-time streaming applications.
+Route 53 — AWS DNS service used for domain routing and traffic management.
+CloudFront — CDN service that delivers content globally with low latency.
+Fargate — Serverless compute engine for containers without managing servers.
+ELB (Load Balancer) — Distributes incoming traffic across multiple servers for high availability.
+ElastiCache — Managed Redis/Memcached caching service for faster application performance.
+CloudWatch - Monitoring and logging service for AWS resources and applications.
+CloudTrail — Tracks and logs AWS account activity and API calls for auditing.
+
+Kubernetes
+=============
+Pod — Smallest deployable unit in Kubernetes that runs one or more containers.
+Node — Worker machine (VM or physical server) where pods run.
+Cluster — Group of master and worker nodes managing containerized applications.
+Deployment — Manages pod replicas and enables rolling updates and rollback.
+ReplicaSet — Ensures the desired number of pod replicas are always running.
+Service — Provides stable networking and load balancing for pods.
+ClusterIP — Internal service accessible only inside the cluster.
+NodePort — Exposes service externally using a port on each node.
+LoadBalancer — Exposes service externally using cloud provider load balancer.
+Ingress — Manages external HTTP/HTTPS routing to services using rules.
+ConfigMap — Stores non-sensitive configuration data as key-value pairs.
+Secret — Securely stores sensitive data like passwords and tokens.
+Namespace — Logical isolation used to organize resources inside a cluster.
+kubectl — CLI tool used to interact with Kubernetes clusters.
+etcd — Distributed key-value store used to store Kubernetes cluster state.
+Kubelet — Agent running on each node that manages pods and containers.
+Kube-Proxy — Handles networking and traffic routing inside the cluster.
+Control Plane (Master Node) — Manages scheduling, monitoring, and cluster decisions.
+Scheduler — Decides on which node a pod should run.
+API Server — Entry point for all Kubernetes API requests.
+Controller Manager — Runs controllers to maintain desired cluster state.
+StatefulSet — Manages stateful applications with stable identity and storage.
+DaemonSet — Ensures one pod runs on every node.
+Job — Runs a task until completion successfully.
+CronJob — Schedules jobs periodically like Linux cron.
+Persistent Volume (PV) — Cluster storage resource provisioned for persistent data.
+Persistent Volume Claim (PVC) — Request for storage by a pod.
+StorageClass — Defines dynamic storage provisioning rules.
+Helm — Package manager used to deploy Kubernetes applications using charts.
+Horizontal Pod Autoscaler (HPA) — Automatically scales pods based on CPU/memory usage.
+Taint — Restricts pods from scheduling on certain nodes unless tolerated.
+Toleration — Allows pods to run on tainted nodes.
+Label — Key-value metadata used to identify and group resources.
+Selector — Used to filter and connect resources using labels.
+Sidecar Container — Helper container running alongside the main application container.
+Init Container — Runs before the main container starts for initialization tasks.
+Liveness Probe — Checks whether a container is healthy or needs restart.
+Readiness Probe — Checks whether a pod is ready to receive traffic.
+Resource Limits — Restricts CPU and memory usage for containers.
+Resource Requests — Minimum CPU and memory required for scheduling containers.
+RBAC — Role-Based Access Control for managing Kubernetes permissions.
+Network Policy — Controls pod-to-pod network communication rules.
+EKS — AWS managed Kubernetes service.
+Minikube — Local single-node Kubernetes cluster for development/testing.
+
+
