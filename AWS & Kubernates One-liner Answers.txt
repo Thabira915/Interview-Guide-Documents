@@ -75,44 +75,44 @@ kafka
 Kafka — Distributed event streaming platform used for real-time data pipelines and messaging.
 Producer — Application that sends messages to Kafka topics.
 Consumer — Application that reads messages from Kafka topics.
-Topic — Logical category/channel where messages are stored.
-Partition — Topic subdivision used for parallelism and scalability.
-Broker — Kafka server responsible for storing and serving messages.
+Topic — Logical channel or category to which producers publish messages and from which consumers read.
+Partition — A topic is divided into partitions for parallel processing, scalability, and ordered message storage.
+Broker — A Kafka server that stores messages and serves producer and consumer requests within the cluster.
 Cluster — Group of Kafka brokers working together.
-Offset — Unique position ID of a message inside a partition.
+Offset — A unique sequential ID assigned to each message within a partition to track its position.
 Consumer Group — Group of consumers sharing message consumption workload.
-Replication — Copying partitions across brokers for fault tolerance.
-Leader Partition — Main partition handling reads and writes.
-Follower Partition — Replica partition syncing data from leader.
-ZooKeeper — Coordination service previously used for Kafka metadata management.
-KRaft — Kafka’s newer metadata management mode replacing ZooKeeper.
+Replication — The process of copying partition data across multiple brokers to ensure fault tolerance and data durability.
+Leader Partition — The primary replica of a partition responsible for all reads and writes; other replicas follow it.
+Follower Partition — A replica that continuously syncs data from the leader partition and takes over if the leader fails.
+ZooKeeper — External coordination service previously used by Kafka for managing broker metadata, leader election, and configuration.
+KRaft — Kafka's built-in consensus protocol that replaces ZooKeeper for managing cluster metadata since Kafka 2.8+.
 Retention Period — Time Kafka keeps messages before deletion.
-ACK — Producer acknowledgment level confirming message delivery.
+ACK — Acknowledgment setting on a producer that controls how many broker replicas must confirm receipt before the write is considered successful.
 ISR (In-Sync Replica) — Replicas fully synced with leader partition.
-Lag — Difference between latest offset and consumer processed offset.
-Rebalancing — Redistribution of partitions among consumers in a group.
+Lag — The gap between the latest offset in a partition and the last offset processed by a consumer; indicates how far behind a consumer is.
+Rebalancing — The process of redistributing partition assignments among consumers in a group when members join or leave.
 Serializer — Converts objects into bytes before sending to Kafka.
 Deserializer — Converts Kafka bytes back into objects for consumers.
-Idempotent Producer — Prevents duplicate message production during retries.
-Exactly Once Semantics — Ensures messages are processed without duplication or loss.
+Idempotent Producer — A producer configuration that ensures each message is written exactly once to a partition, preventing duplicates on retry.
+Exactly Once Semantics — Guarantees that a message is produced, delivered, and consumed exactly once with no duplication or data loss.
 At Least Once — Messages may duplicate but are never lost.
 At Most Once — Messages may be lost but never duplicated.
-Dead Letter Topic (DLQ) — Stores failed or unprocessable messages.
+Dead Letter Topic (DLQ) — A special Kafka topic used to capture messages that failed processing so they can be analyzed or reprocessed.
 Kafka Connect — Tool for integrating Kafka with external systems/databases.
 Kafka Streams — Library for stream processing directly within Kafka applications.
-Schema Registry — Centralized schema management for Kafka message formats.
-Compaction — Retains latest message per key while removing old duplicates.
+Schema Registry — Centralized service that stores and enforces Avro/JSON/Protobuf schemas for Kafka message serialization consistency.
+Compaction — Log compaction strategy that retains only the latest message per key in a partition, removing outdated duplicates.
 Batching — Producer sending multiple messages together for better performance.
 Throughput — Number of messages processed per second.
-Consumer Polling — Consumers continuously fetch messages from Kafka brokers.
-Commit Offset — Saving processed message position for recovery.
+Consumer Polling — Consumers repeatedly call the poll() method to fetch batches of messages from Kafka brokers.
+Commit Offset — The action of saving the offset of the last successfully processed message so the consumer can resume correctly after a restart.
 Synchronous Communication — Sender waits for immediate response.
 Asynchronous Communication — Sender continues without waiting for response.
 Event Streaming — Continuous flow and processing of real-time events/data.
-Back Pressure — Situation where consumers cannot process incoming data fast enough.
-Ordering Guarantee — Kafka guarantees ordering only within a partition.
-Horizontal Scaling — Increasing partitions/brokers to improve performance.
-Fault Tolerance — Kafka continues working even if brokers fail.
+Back Pressure — A condition where the consumer cannot process messages as fast as the producer sends them, causing queue build-up.
+Ordering Guarantee — Kafka guarantees message order only within a single partition, not across partitions of a topic.
+Horizontal Scaling — Adding more partitions or brokers to a Kafka cluster to increase throughput and capacity.
+Fault Tolerance — Kafka's ability to continue operating correctly even when one or more brokers fail, due to replication.
 
 Microservices
 =================
