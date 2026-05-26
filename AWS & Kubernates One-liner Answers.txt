@@ -116,7 +116,6 @@ Fault Tolerance — Kafka continues working even if brokers fail.
 
 Microservices
 =================
-
 Microservices — Architecture where applications are split into small independently deployable services.
 Monolith — Single large application where all modules are tightly coupled.
 Service Discovery — Mechanism for services to find and communicate with each other dynamically.
@@ -167,6 +166,155 @@ CAP Theorem — Distributed systems can guarantee only two of Consistency, Avail
 Bulkhead Pattern — Isolates failures to prevent entire system impact.
 CQRS — Separates read and write operations into different models.
 Eventual Consistency — Data becomes consistent over time across services.
+
+Multithreading
+===================
+Multithreading — Executing multiple threads concurrently within a process.
+Thread — Smallest independent execution unit inside a process.
+Process — Independent program execution with separate memory space.
+Concurrency — Managing multiple tasks simultaneously.
+Parallelism — Executing multiple tasks literally at the same time.
+Main Thread — Default thread where Java program execution starts.
+Thread Lifecycle — States through which a thread passes during execution.
+New State — Thread created but not started.
+Runnable State — Thread ready or running on CPU.
+Blocked State — Thread waiting for monitor lock.
+Waiting State — Thread waiting indefinitely for another thread action.
+Timed Waiting — Thread waiting for specified time duration.
+Terminated State — Thread execution completed.
+Thread Class — Java class used to create threads by extending it.
+Runnable Interface — Preferred way of creating threads using run() method.
+Callable Interface — Similar to Runnable but returns result and throws exceptions.
+Future — Represents result of asynchronous computation.
+Executor Framework — Framework managing thread creation and pooling.
+Thread Pool — Collection of reusable worker threads.
+Executors Class — Factory class for creating thread pools.
+Fixed Thread Pool — Thread pool with fixed number of threads.
+Cached Thread Pool — Dynamically creates reusable threads as needed.
+Single Thread Executor — Executes tasks sequentially using one thread.
+Scheduled Executor Service — Executes tasks after delay or periodically.
+start() — Starts new thread execution.
+run() — Contains thread execution logic.
+sleep() — Pauses thread execution temporarily.
+join() — Waits for another thread to complete.
+yield() — Suggests scheduler pause current thread execution.
+Daemon Thread — Background thread running until user threads finish.
+User Thread — Foreground thread keeping JVM alive.
+Synchronization — Controlling shared resource access between threads.
+Synchronized Method — Locks entire method for one thread at a time.
+Synchronized Block — Locks only specific critical section of code.
+Monitor Lock — Internal lock used by synchronized keyword.
+Race Condition — Multiple threads updating shared data unpredictably.
+Critical Section — Code section accessing shared resources.
+Thread Safety — Code behaving correctly under concurrent execution.
+Deadlock — Threads waiting forever for each other’s locks.
+Starvation — Thread never getting CPU/resources due to higher-priority threads.
+Livelock — Threads continuously reacting without making progress.
+wait() — Releases lock and waits for notification.
+notify() — Wakes one waiting thread.
+notifyAll() — Wakes all waiting threads.
+volatile Keyword — Ensures variable visibility across threads.
+Atomic Variable — Thread-safe variable supporting atomic operations.
+AtomicInteger — Thread-safe integer supporting atomic updates.
+ReentrantLock — Advanced explicit locking mechanism.
+ReadWriteLock — Separate locks for read and write operations.
+Semaphore — Controls number of threads accessing resource simultaneously.
+CountDownLatch — Allows threads to wait until tasks complete.
+CyclicBarrier — Synchronizes threads reaching common barrier point.
+ForkJoinPool — Framework for divide-and-conquer parallel tasks.
+CompletableFuture — Advanced asynchronous programming support.
+ConcurrentHashMap — Thread-safe high-performance hashmap.
+CopyOnWriteArrayList — Thread-safe list optimized for read-heavy operations.
+BlockingQueue — Queue supporting thread-safe producer-consumer operations.
+Producer-Consumer Problem — Synchronization problem between producing and consuming threads.
+Context Switching — CPU switching execution between threads/processes.
+Thread Priority — Suggests execution importance to scheduler.
+Immutable Object — Object whose state cannot change after creation.
+ThreadLocal — Creates thread-specific isolated variable copies.
+Parallel Stream — Java Stream API processing data concurrently.
+Fork-Join Framework — Parallel execution framework splitting tasks recursively.
+CAS (Compare And Swap) — Atomic operation used in lock-free programming.
+Busy Waiting — Thread continuously checking condition wasting CPU cycles.
+Lock Contention — Multiple threads competing for same lock.
+Visibility Problem — One thread unable to see updated variable changes.
+Memory Leak in Threads — Resources not released properly by threads.
+CPU Bound Task — Task heavily dependent on CPU processing.
+IO Bound Task — Task mainly waiting for I/O operations.
+
+Java 8 
+=============
+Java 8 — Major Java release introducing functional programming features.
+Lambda Expression — Anonymous function enabling concise functional-style code.
+Functional Interface — Interface containing exactly one abstract method.
+@FunctionalInterface — Annotation ensuring interface has one abstract method only.
+Predicate — Functional interface testing condition and returning boolean.
+Function — Functional interface transforming input into output.
+Consumer — Functional interface accepting input without returning value.
+Supplier — Functional interface supplying values without input.
+Method Reference — Shorter syntax referring existing methods using ::.
+Stream API — Functional-style processing of collections/data sequences.
+Intermediate Operation — Stream operation returning another stream.
+Terminal Operation — Final stream operation producing result/output.
+filter() — Selects elements matching condition.
+map() — Transforms elements into another form.
+flatMap() — Flattens nested structures into single stream.
+reduce() — Combines stream elements into single result.
+collect() — Converts stream into collection or custom result.
+forEach() — Iterates through stream elements.
+distinct() — Removes duplicate elements from stream.
+sorted() — Sorts stream elements.
+limit() — Restricts number of stream elements.
+skip() — Skips specified number of elements.
+findFirst() — Returns first matching element.
+findAny() — Returns any matching element.
+anyMatch() — Checks if any element matches condition.
+allMatch() — Checks if all elements match condition.
+noneMatch() — Checks if no elements match condition.
+Optional Class — Container avoiding NullPointerException.
+Optional.of() — Creates Optional with non-null value only.
+Optional.ofNullable() — Creates Optional allowing null values.
+Optional.empty() — Creates empty Optional object.
+isPresent() — Checks if Optional contains value.
+orElse() — Returns default value if Optional empty.
+orElseGet() — Lazily returns default value using Supplier.
+orElseThrow() — Throws exception if Optional empty.
+ifPresent() — Executes logic if Optional contains value.
+Default Method — Interface method with implementation.
+Static Method in Interface — Utility method defined inside interface.
+Date and Time API — Improved immutable date/time handling introduced in Java 8.
+LocalDate — Represents date without time.
+LocalTime — Represents time without date.
+LocalDateTime — Represents date and time together.
+ZonedDateTime — Represents date/time with timezone.
+Instant — Represents timestamp in UTC.
+Parallel Stream — Processes stream elements concurrently using multiple threads.
+Sequential Stream — Processes elements one by one.
+Collectors — Utility class for collecting stream results.
+groupingBy() — Groups stream elements based on condition/key.
+partitioningBy() — Splits elements into true/false groups.
+joining() — Concatenates stream elements into string.
+counting() — Counts stream elements.
+mapping() — Applies transformation during collection.
+min() — Finds minimum element from stream.
+max() — Finds maximum element from stream.
+sum() — Calculates total of numeric stream.
+Stream Pipeline — Sequence of stream operations executed together.
+Lazy Evaluation — Stream operations execute only during terminal operation.
+Short Circuiting — Stream stops processing once result determined.
+Comparator.comparing() — Simplifies object sorting using fields.
+forEachOrdered() — Maintains encounter order during parallel stream processing.
+peek() — Performs action during stream processing mainly for debugging.
+Double Colon Operator (::) — Syntax used for method references.
+Nashorn Engine — JavaScript engine introduced in Java 8.
+CompletableFuture — Asynchronous programming and task chaining support.
+Base64 Encoder/Decoder — Utility for Base64 encoding and decoding.
+Spliterator — Advanced iterator supporting parallel traversal.
+Type Inference — Compiler automatically determines datatype.
+Effectively Final Variable — Variable whose value does not change after initialization.
+Immutable Date API — Java 8 date/time objects are immutable and thread-safe.
+Functional Programming — Programming style using functions and immutability.
+Internal Iteration — Stream API controls iteration internally.
+External Iteration — Programmer manually controls iteration using loops.
 
 SpringBoot
 ============
@@ -622,3 +770,78 @@ Memoization — Caching results to improve performance.
 Debouncing — Delaying rapid event execution like search input.
 Throttling — Limiting function execution frequency during events.
 Profiler — React tool for measuring rendering performance.
+
+Git
+=======
+Git — Distributed version control system used for source code management.
+Repository (Repo) — Storage location containing project files and Git history.
+Local Repository — Git repository stored on developer machine.
+Remote Repository — Centralized Git repository hosted on server/platform.
+GitHub — Cloud platform for hosting Git repositories and collaboration.
+GitLab — DevOps platform providing Git repository management and CI/CD.
+Bitbucket — Git repository hosting service by Atlassian.
+Version Control — Tracking and managing code changes over time.
+Commit — Snapshot of code changes saved into repository history.
+Commit ID (Hash) — Unique identifier for each commit.
+Branch — Independent line of development in Git.
+Main/Master Branch — Primary production-ready branch.
+Feature Branch — Branch created for developing new features.
+Checkout — Switching between branches or commits.
+Clone — Copying remote repository to local machine.
+Fork — Personal copy of another repository.
+Pull — Fetches and merges latest remote changes into local branch.
+Push — Uploads local commits to remote repository.
+Fetch — Downloads latest remote changes without merging.
+Merge — Combines changes from one branch into another.
+Merge Conflict — Conflict occurring when same code modified differently.
+Rebase — Reapplies commits on top of another branch for cleaner history.
+Cherry Pick — Applies specific commit from one branch to another.
+Stash — Temporarily saves uncommitted changes.
+Pop Stash — Restores stashed changes and removes stash entry.
+Stage Area — Intermediate area before committing changes.
+git add — Moves changes to staging area.
+git commit — Saves staged changes into repository history.
+git status — Shows current repository state and changes.
+git log — Displays commit history.
+git diff — Shows differences between file versions.
+HEAD — Pointer representing current checked-out commit/branch.
+Detached HEAD — HEAD pointing directly to commit instead of branch.
+Tag — Named reference marking important commits/releases.
+Annotated Tag — Tag containing metadata like author/message.
+Lightweight Tag — Simple pointer to specific commit.
+Pull Request (PR) — Request to merge changes into another branch.
+Merge Request (MR) — GitLab equivalent of Pull Request.
+Code Review — Reviewing code changes before merging.
+Conflict Resolution — Manual process of fixing merge conflicts.
+git reset — Removes commits or unstages changes.
+Soft Reset — Removes commit while keeping changes staged.
+Mixed Reset — Removes commit and unstages changes.
+Hard Reset — Removes commit and deletes changes permanently.
+git revert — Creates new commit undoing previous commit changes.
+git rm — Removes tracked files from repository.
+git mv — Renames or moves files within Git.
+git ignore — Prevents specific files/folders from tracking.
+.gitignore — File containing ignore rules.
+Upstream Branch — Default remote branch linked with local branch.
+Origin — Default remote repository name.
+Fast Forward Merge — Merge without creating extra merge commit.
+Squash Merge — Combines multiple commits into single commit.
+Bisect — Finds commit introducing bug using binary search.
+Hook — Script triggered automatically on Git events.
+Pre-Commit Hook — Runs before commit creation.
+CI/CD Integration — Automating build/test/deployment using Git changes.
+Git Workflow — Branching and collaboration strategy in Git projects.
+Git Flow — Popular branching model using feature/release/hotfix branches.
+Trunk-Based Development — Developers frequently merge changes into main branch.
+Shallow Clone — Cloning limited commit history for faster download.
+Submodule — Repository embedded inside another Git repository.
+Blame — Shows who modified each line in file.
+git reflog — Tracks all HEAD movements and branch updates.
+Detached Changes Recovery — Recovering lost commits using reflog.
+Working Directory — Local project files currently being modified.
+Index — Another name for staging area.
+Remote Tracking Branch — Local reference tracking remote branch state.
+Bare Repository — Repository without working directory mainly for remotes.
+Monorepo — Single repository containing multiple projects/services.
+Patch — File representing code changes between commits.
+Git Archive — Exports repository files without .git history.
