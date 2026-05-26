@@ -1,36 +1,36 @@
 AWS
 ======
-IAM  - Manages users, roles, groups, and permissions securely in AWS.
-S3  - Scalable object storage service used to store files, backups, logs, and static content.
-EC2  - Virtual server service in AWS used to run applications on scalable compute instances. (Virtual Machine)
-Elastic BeanStalk  - PaaS service that automatically deploys, manages, and scales applications.
-AWS Lambda  - Serverless compute service that runs code without managing servers.
-AWS Dynamo DB  - Fully managed NoSQL database with low latency and automatic scaling.
-AWS Secret Manager  - Securely stores and manages secrets like DB passwords and API keys.
-AWS Certificate Manager  - Manages SSL/TLS certificates for secure HTTPS communication.
-AWS RDS  - Managed relational database service supporting MySQL, PostgreSQL, Oracle, etc.
-SQS - Message queue service used for decoupling and asynchronous communication between services.
-SNS - Pub/Sub notification service used to send messages to multiple subscribers.
-EKS - Managed Kubernetes service used to deploy and manage containerized applications.
-ECS — AWS container orchestration service for running Docker containers.
-Aurora DB - High-performance managed relational database compatible with MySQL and PostgreSQL.
-AWS MSK - Fully managed Apache Kafka service for real-time streaming applications.
-Route 53 — AWS DNS service used for domain routing and traffic management.
-CloudFront — CDN service that delivers content globally with low latency.
-Fargate — Serverless compute engine for containers without managing servers.
-ELB (Load Balancer) — Distributes incoming traffic across multiple servers for high availability.
-ElastiCache — Managed Redis/Memcached caching service for faster application performance.
-CloudWatch - Monitoring and logging service for AWS resources and applications.
-CloudTrail — Tracks and logs AWS account activity and API calls for auditing.
+IAM  - Manages users, roles, groups, and policies to control who can access which AWS resources and what actions they can perform.
+S3  - Scalable object storage service used to store and retrieve any amount of data such as files, backups, logs, and static website content.
+EC2  - Virtual server (compute instance) in AWS that lets you run applications on scalable infrastructure without owning physical hardware.
+Elastic BeanStalk - PaaS service that automatically handles deployment, capacity provisioning, load balancing, and scaling of your application.
+AWS Lambda  - Serverless compute service that runs your code in response to events without requiring you to provision or manage servers.
+AWS Dynamo DB  - Fully managed NoSQL database service offering single-digit millisecond latency with automatic scaling and high availability.
+AWS Secret Manager  - Securely stores, rotates, and manages sensitive information like database passwords, API keys, and credentials.
+AWS Certificate Manager  - Manages provisioning, renewal, and deployment of SSL/TLS certificates for secure HTTPS communication.
+AWS RDS — Managed relational database service supporting engines like MySQL, PostgreSQL, MariaDB, Oracle, and SQL Server with automated backups and patching.
+SQS — Fully managed message queue service used to decouple and scale microservices through asynchronous communication between components.
+SNS — Pub/Sub notification service that sends messages to multiple subscribers simultaneously via email, SMS, Lambda, or SQS.
+EKS — AWS managed Kubernetes service that simplifies deploying, managing, and scaling containerized applications using Kubernetes.
+ECS — AWS native container orchestration service for running, stopping, and managing Docker containers on a cluster.
+Aurora DB — High-performance, fully managed relational database compatible with MySQL and PostgreSQL, offering up to 5x MySQL speed.
+AWS MSK — Fully managed Apache Kafka service that handles cluster provisioning, configuration, and maintenance for real-time streaming applications.
+Route 53 — Highly available and scalable AWS DNS service used for domain registration, routing, and health checking.
+CloudFront — Content Delivery Network (CDN) service that delivers data, videos, and applications globally with low latency using edge locations.
+Fargate — Serverless compute engine for running containers without managing the underlying EC2 server infrastructure.
+ELB (Elastic Load Balancer) — Automatically distributes incoming application traffic across multiple targets like EC2 instances for high availability and fault tolerance.
+ElastiCache — Fully managed in-memory caching service supporting Redis and Memcached to improve application read performance.
+CloudWatch — Monitoring and observability service used to collect metrics, logs, and alarms for AWS resources and applications.
+CloudTrail — Governance and auditing service that records and logs all API calls and account activity across your AWS infrastructure.
 
 Kubernetes
 =============
-Pod — Smallest deployable unit in Kubernetes that runs one or more containers.
-Node — Worker machine (VM or physical server) where pods run.
-Cluster — Group of master and worker nodes managing containerized applications.
+Pod — Smallest deployable unit in Kubernetes that encapsulates one or more containers sharing the same network and storage.
+Node — A worker machine (VM or physical server) in a Kubernetes cluster where pods are scheduled and run.
+Cluster — A set of master and worker nodes that together run and manage containerized applications.
 Deployment — Manages pod replicas and enables rolling updates and rollback.
-ReplicaSet — Ensures the desired number of pod replicas are always running.
-Service — Provides stable networking and load balancing for pods.
+ReplicaSet — Ensures a specified number of identical pod replicas are always running at any given time.
+Service — Provides a stable network endpoint and load balancing to expose pods internally or externally.
 ClusterIP — Internal service accessible only inside the cluster.
 NodePort — Exposes service externally using a port on each node.
 LoadBalancer — Exposes service externally using cloud provider load balancer.
@@ -42,33 +42,33 @@ kubectl — CLI tool used to interact with Kubernetes clusters.
 etcd — Distributed key-value store used to store Kubernetes cluster state.
 Kubelet — Agent running on each node that manages pods and containers.
 Kube-Proxy — Handles networking and traffic routing inside the cluster.
-Control Plane (Master Node) — Manages scheduling, monitoring, and cluster decisions.
-Scheduler — Decides on which node a pod should run.
+Control Plane (Master Node) — The brain of the Kubernetes cluster that manages scheduling, health monitoring, and overall cluster decisions.
+Scheduler — Control plane component that decides which worker node a newly created pod should run on based on resource availability.
 API Server — Entry point for all Kubernetes API requests.
-Controller Manager — Runs controllers to maintain desired cluster state.
+Controller Manager — Runs built-in controllers (like node, replication, endpoint controllers) to maintain the desired cluster state.
 StatefulSet — Manages stateful applications with stable identity and storage.
-DaemonSet — Ensures one pod runs on every node.
+DaemonSet — Ensures exactly one pod runs on every node in the cluster, commonly used for log collectors and monitoring agents.
 Job — Runs a task until completion successfully.
-CronJob — Schedules jobs periodically like Linux cron.
-Persistent Volume (PV) — Cluster storage resource provisioned for persistent data.
-Persistent Volume Claim (PVC) — Request for storage by a pod.
-StorageClass — Defines dynamic storage provisioning rules.
-Helm — Package manager used to deploy Kubernetes applications using charts.
+CronJob — Runs Jobs on a scheduled basis using cron syntax, useful for periodic tasks like backups or report generation.
+Persistent Volume (PV) — A piece of storage in the cluster provisioned by an admin or dynamically, independent of any pod lifecycle.
+Persistent Volume Claim (PVC) — A request made by a pod for a specific amount and type of storage from available Persistent Volumes.
+StorageClass — Defines how storage is dynamically provisioned including the provider, type, and reclaim policy.
+Helm — Kubernetes package manager that uses charts to define, install, and upgrade complex Kubernetes applications.
 Horizontal Pod Autoscaler (HPA) — Automatically scales pods based on CPU/memory usage.
 Taint — Restricts pods from scheduling on certain nodes unless tolerated.
 Toleration — Allows pods to run on tainted nodes.
-Label — Key-value metadata used to identify and group resources.
-Selector — Used to filter and connect resources using labels.
-Sidecar Container — Helper container running alongside the main application container.
-Init Container — Runs before the main container starts for initialization tasks.
-Liveness Probe — Checks whether a container is healthy or needs restart.
-Readiness Probe — Checks whether a pod is ready to receive traffic.
-Resource Limits — Restricts CPU and memory usage for containers.
-Resource Requests — Minimum CPU and memory required for scheduling containers.
-RBAC — Role-Based Access Control for managing Kubernetes permissions.
-Network Policy — Controls pod-to-pod network communication rules.
+Label — Key-value metadata attached to Kubernetes objects to identify, group, and select resources.
+Selector — Used to filter and match Kubernetes resources based on their labels for grouping or targeting.
+Sidecar Container — A helper container that runs alongside the main application container in the same pod to extend functionality.
+Init Container — A container that runs and must complete successfully before the main application container starts.
+Liveness Probe — Periodically checks if a container is still running and restarts it if the check fails.
+Readiness Probe — Checks if a pod is ready to serve traffic and removes it from the service endpoint if the check fails.
+Resource Limits — Maximum CPU and memory a container is allowed to use, enforced by the Kubernetes scheduler.
+Resource Requests — Minimum CPU and memory guaranteed to a container, used by the scheduler to place pods on nodes.
+RBAC — Role-Based Access Control system that regulates which users or service accounts can perform which actions on Kubernetes resources.
+Network Policy — Kubernetes resource that defines rules for controlling inbound and outbound pod-to-pod network traffic.
+Minikube — Local single-node Kubernetes cluster tool for development and testing on a personal machine.
 EKS — AWS managed Kubernetes service.
-Minikube — Local single-node Kubernetes cluster for development/testing.
 
 kafka
 ======
@@ -603,6 +603,83 @@ Scheduling — Running tasks at fixed intervals/time.
 @Scheduled — Schedules task execution automatically.
 Async Processing — Running tasks asynchronously in background threads.
 @Async — Enables asynchronous method execution.
+
+Design Pattern
+=======================
+Creational Pattern — Pattern dealing with object creation mechanisms.
+Structural Pattern — Pattern focusing on class/object composition.
+Behavioral Pattern — Pattern defining communication between objects.
+Creational Design Patterns :-
+Singleton Pattern — Ensures only one object instance exists globally.
+Factory Pattern — Creates objects without exposing creation logic.
+Abstract Factory Pattern — Creates families of related objects together.
+Builder Pattern — Constructs complex objects step by step.
+Prototype Pattern — Creates objects by cloning existing instances.
+Object Pool Pattern — Reuses objects instead of creating repeatedly.
+Structural Design Patterns :-
+Adapter Pattern — Converts incompatible interfaces into compatible ones.
+Bridge Pattern — Separates abstraction from implementation independently.
+Composite Pattern — Treats individual objects and groups uniformly.
+Decorator Pattern — Adds functionality dynamically without modifying object.
+Facade Pattern — Provides simplified interface to complex subsystem.
+Flyweight Pattern — Reduces memory usage by sharing objects.
+Proxy Pattern — Controls access to another object.
+Behavioral Design Patterns :-
+Observer Pattern — One object notifies multiple dependent objects automatically.
+Strategy Pattern — Encapsulates interchangeable algorithms separately.
+Command Pattern — Encapsulates request as object.
+State Pattern — Changes object behavior based on internal state.
+Template Method Pattern — Defines algorithm skeleton with customizable steps.
+Chain of Responsibility Pattern — Passes request through handler chain sequentially.
+Mediator Pattern — Centralizes communication between multiple objects.
+Memento Pattern — Captures and restores object state.
+Iterator Pattern — Sequentially accesses collection elements without exposing structure.
+Visitor Pattern — Adds operations to objects without modifying them.
+Interpreter Pattern — Defines grammar and interprets language expressions.
+Spring / Java Related Pattern Usage :-
+IOC Pattern — Spring container controls object creation and lifecycle.
+Dependency Injection Pattern — Dependencies injected externally into objects.
+MVC Pattern — Separates application into Model, View, and Controller layers.
+DAO Pattern — Separates persistence logic from business logic.
+DTO Pattern — Transfers data between application layers efficiently.
+Repository Pattern — Encapsulates database access operations.
+Front Controller Pattern — Single controller handling all incoming requests.
+Service Locator Pattern — Central registry providing service lookup.
+Microkernel Pattern — Core system extended using plugins/modules.
+Circuit Breaker Pattern — Prevents cascading failures in distributed systems.
+Saga Pattern — Handles distributed transactions using compensating actions.
+CQRS Pattern — Separates read and write operations.
+Event Sourcing Pattern — Stores application state as sequence of events.
+Retry Pattern — Automatically retries failed operations temporarily.
+Bulkhead Pattern — Isolates failures between components/resources.
+Sidecar Pattern — Helper service/container running alongside main application.
+Strangler Pattern — Gradually replaces legacy system with modern services.
+Anti-Corruption Layer Pattern — Protects new system from legacy system complexity.
+Frequently Asked Cross Questions
+
+Q: Why Singleton can be dangerous?
+Shared mutable state may cause threading and testing issues.
+
+Q: Difference between Factory and Abstract Factory?
+Factory creates one product type; Abstract Factory creates related product families.
+
+Q: Difference between Strategy and State Pattern?
+Strategy changes algorithm externally; State changes behavior internally.
+
+Q: Difference between Adapter and Decorator?
+Adapter changes interface; Decorator adds functionality.
+
+Q: Most used design patterns in Spring?
+Singleton, Factory, Proxy, MVC, Dependency Injection, Template Method.
+
+Q: Which pattern is used in Spring Bean creation?
+Factory and Singleton patterns.
+
+Q: Which pattern is used in Spring AOP?
+Proxy pattern.
+
+Q: Which pattern is used in RestTemplate/JdbcTemplate?
+Template Method pattern.
 
 
 Java Scripts
