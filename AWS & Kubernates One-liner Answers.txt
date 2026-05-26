@@ -70,4 +70,555 @@ Network Policy — Controls pod-to-pod network communication rules.
 EKS — AWS managed Kubernetes service.
 Minikube — Local single-node Kubernetes cluster for development/testing.
 
+kafka
+======
+Kafka — Distributed event streaming platform used for real-time data pipelines and messaging.
+Producer — Application that sends messages to Kafka topics.
+Consumer — Application that reads messages from Kafka topics.
+Topic — Logical category/channel where messages are stored.
+Partition — Topic subdivision used for parallelism and scalability.
+Broker — Kafka server responsible for storing and serving messages.
+Cluster — Group of Kafka brokers working together.
+Offset — Unique position ID of a message inside a partition.
+Consumer Group — Group of consumers sharing message consumption workload.
+Replication — Copying partitions across brokers for fault tolerance.
+Leader Partition — Main partition handling reads and writes.
+Follower Partition — Replica partition syncing data from leader.
+ZooKeeper — Coordination service previously used for Kafka metadata management.
+KRaft — Kafka’s newer metadata management mode replacing ZooKeeper.
+Retention Period — Time Kafka keeps messages before deletion.
+ACK — Producer acknowledgment level confirming message delivery.
+ISR (In-Sync Replica) — Replicas fully synced with leader partition.
+Lag — Difference between latest offset and consumer processed offset.
+Rebalancing — Redistribution of partitions among consumers in a group.
+Serializer — Converts objects into bytes before sending to Kafka.
+Deserializer — Converts Kafka bytes back into objects for consumers.
+Idempotent Producer — Prevents duplicate message production during retries.
+Exactly Once Semantics — Ensures messages are processed without duplication or loss.
+At Least Once — Messages may duplicate but are never lost.
+At Most Once — Messages may be lost but never duplicated.
+Dead Letter Topic (DLQ) — Stores failed or unprocessable messages.
+Kafka Connect — Tool for integrating Kafka with external systems/databases.
+Kafka Streams — Library for stream processing directly within Kafka applications.
+Schema Registry — Centralized schema management for Kafka message formats.
+Compaction — Retains latest message per key while removing old duplicates.
+Batching — Producer sending multiple messages together for better performance.
+Throughput — Number of messages processed per second.
+Consumer Polling — Consumers continuously fetch messages from Kafka brokers.
+Commit Offset — Saving processed message position for recovery.
+Synchronous Communication — Sender waits for immediate response.
+Asynchronous Communication — Sender continues without waiting for response.
+Event Streaming — Continuous flow and processing of real-time events/data.
+Back Pressure — Situation where consumers cannot process incoming data fast enough.
+Ordering Guarantee — Kafka guarantees ordering only within a partition.
+Horizontal Scaling — Increasing partitions/brokers to improve performance.
+Fault Tolerance — Kafka continues working even if brokers fail.
 
+Microservices
+=================
+
+Microservices — Architecture where applications are split into small independently deployable services.
+Monolith — Single large application where all modules are tightly coupled.
+Service Discovery — Mechanism for services to find and communicate with each other dynamically.
+Eureka Server — Service registry used for registering and discovering microservices.
+API Gateway — Single entry point for routing, security, and request handling.
+Load Balancing — Distributes requests across multiple service instances.
+Feign Client — Declarative REST client for service-to-service communication.
+REST API — Communication style using HTTP methods like GET, POST, PUT, DELETE.
+Synchronous Communication — Service waits for immediate response from another service.
+Asynchronous Communication — Service communicates using queues/events without waiting.
+Circuit Breaker — Prevents cascading failures when dependent service is down.
+Retry Mechanism — Automatically retries failed requests temporarily.
+Fallback — Alternative response when service call fails.
+Resilience4j — Fault tolerance library implementing circuit breaker and retry patterns.
+Distributed Tracing — Tracks requests across multiple microservices.
+Sleuth — Adds trace IDs and span IDs for request tracking.
+Zipkin — Distributed tracing tool for monitoring request flow.
+Centralized Logging — Aggregating logs from multiple services into one system.
+ELK Stack — Elasticsearch, Logstash, and Kibana used for log management.
+Config Server — Centralized configuration management for microservices.
+Spring Cloud Config — Externalized centralized configuration service.
+Docker — Containerization platform used to package applications with dependencies.
+Containerization — Packaging application and dependencies together for portability.
+Kubernetes — Container orchestration platform for deployment and scaling.
+Horizontal Scaling — Increasing service instances to handle more traffic.
+Vertical Scaling — Increasing CPU/RAM of existing server.
+Database Per Service — Each microservice owns its separate database.
+Distributed Transaction — Transaction spanning multiple microservices/databases.
+Saga Pattern — Manages distributed transactions using compensating actions.
+Event-Driven Architecture — Services communicate through events/messages.
+Kafka — Distributed event streaming platform for asynchronous communication.
+RabbitMQ — Message broker used for asynchronous messaging.
+Idempotency — Same request produces same result even if repeated multiple times.
+OAuth2 — Authorization framework for secure API access.
+JWT Token — Token-based authentication mechanism for stateless security.
+Stateless Service — Service that does not store client session data locally.
+Blue-Green Deployment — Deployment strategy switching traffic between old and new environments.
+Canary Deployment — Releasing new version gradually to small subset of users.
+CI/CD — Automated build, testing, and deployment pipeline.
+Jenkins — Automation server commonly used for CI/CD pipelines.
+Prometheus — Monitoring and metrics collection tool.
+Grafana — Visualization dashboard for monitoring metrics.
+OpenAPI/Swagger — API documentation and testing framework.
+Service Mesh — Infrastructure layer managing service communication and security.
+Istio — Popular service mesh implementation for Kubernetes.
+gRPC — High-performance communication protocol using Protocol Buffers.
+CAP Theorem — Distributed systems can guarantee only two of Consistency, Availability, and Partition Tolerance.
+Bulkhead Pattern — Isolates failures to prevent entire system impact.
+CQRS — Separates read and write operations into different models.
+Eventual Consistency — Data becomes consistent over time across services.
+
+SpringBoot
+============
+Spring Boot — Framework used to build production-ready Spring applications quickly with minimal configuration.
+Starter Dependency — Predefined dependency bundle simplifying project setup.
+Auto Configuration — Automatically configures Spring application based on dependencies present.
+Embedded Server — Built-in Tomcat/Jetty server eliminating external deployment need.
+Spring Initializr — Tool for generating Spring Boot project structure quickly.
+application.properties — Configuration file used for application settings.
+application.yml — YAML-based configuration file alternative to properties.
+@SpringBootApplication — Combines configuration, component scan, and auto configuration.
+@RestController — Combines @Controller and @ResponseBody for REST APIs.
+@Controller — Handles web requests and returns views/pages.
+@Service — Marks business logic layer component.
+@Repository — Marks DAO layer and enables DB exception translation.
+@Component — Generic Spring-managed bean annotation.
+@Autowired — Automatically injects dependencies into Spring beans.
+Dependency Injection — Providing dependencies externally instead of creating manually.
+IOC Container — Manages lifecycle and creation of Spring beans.
+Bean — Object managed by Spring container.
+@Bean — Explicitly creates and manages bean inside configuration class.
+@Configuration — Defines Spring configuration class containing bean definitions.
+@Value — Injects property values into variables.
+@Qualifier — Resolves ambiguity when multiple beans of same type exist.
+@Primary — Marks default bean among multiple candidates.
+@RequestMapping — Maps HTTP requests to controller methods.
+@GetMapping — Handles HTTP GET requests.
+@PostMapping — Handles HTTP POST requests.
+@PutMapping — Handles HTTP PUT requests.
+@DeleteMapping — Handles HTTP DELETE requests.
+@PathVariable — Extracts value from URL path.
+@RequestParam — Extracts query parameter from request URL.
+@RequestBody — Maps HTTP request body to Java object.
+@ResponseBody — Converts Java object into HTTP response JSON/XML.
+Spring Data JPA — Simplifies database operations using repositories.
+JpaRepository — Provides CRUD and pagination methods automatically.
+Hibernate — ORM framework mapping Java objects to database tables.
+ORM — Technique mapping objects to relational database tables.
+Entity — Java class mapped to database table.
+@Entity — Marks class as JPA entity.
+@Table — Specifies database table mapping.
+@Id — Marks primary key field.
+@GeneratedValue — Automatically generates primary key values.
+@Transactional — Manages database transaction boundaries.
+Spring Security — Framework for authentication and authorization.
+JWT — Token-based authentication mechanism for stateless APIs.
+Actuator — Provides monitoring and health endpoints.
+Profile — Environment-specific configuration management.
+@Profile — Activates beans for specific environments.
+Exception Handling — Managing application errors gracefully.
+@ControllerAdvice — Global exception handling across controllers.
+@ExceptionHandler — Handles specific exceptions.
+Pagination — Fetching data in smaller chunks/pages.
+Caching — Temporarily storing frequently used data for performance improvement.
+@Cacheable — Enables caching for method results.
+Spring Batch — Framework for batch processing large datasets.
+Spring Scheduler — Executes tasks at scheduled intervals.
+@Scheduled — Schedules method execution periodically.
+Spring Cloud — Tools for building distributed microservices systems.
+Feign Client — Declarative REST client for service communication.
+Eureka — Service registry for microservices discovery.
+Config Server — Centralized external configuration management.
+Circuit Breaker — Prevents cascading failures in distributed systems.
+Resilience4j — Fault tolerance library for retry and circuit breaker.
+Swagger/OpenAPI — API documentation and testing framework.
+Lombok — Reduces boilerplate code using annotations.
+DevTools — Enables automatic restart and live reload during development.
+CommandLineRunner — Executes code after Spring Boot application startup.
+WAR Packaging — Deployment format for external servers.
+JAR Packaging — Self-contained executable application package.
+
+Spring Data JPA
+=================
+Spring Data JPA — Simplifies database operations using JPA repositories and Hibernate.
+JPA — Java specification for ORM and database persistence.
+Hibernate — Popular JPA implementation framework.
+ORM — Maps Java objects to relational database tables.
+Entity — Java class mapped to database table.
+@Entity — Marks class as JPA entity.
+@Table — Maps entity to specific database table.
+@Id — Marks primary key column.
+@GeneratedValue — Automatically generates primary key values.
+@Column — Maps field to database column.
+@Transient — Ignores field from database persistence.
+Repository — Interface layer for database operations.
+CrudRepository — Provides basic CRUD operations.
+JpaRepository — Extends CRUD with pagination and JPA features.
+PagingAndSortingRepository — Adds pagination and sorting support.
+save() — Inserts or updates entity data.
+findById() — Fetches record using primary key.
+findAll() — Retrieves all records from table.
+deleteById() — Deletes record using primary key.
+Derived Query Methods — Queries generated automatically from method names.
+findByName() — Example of derived query method.
+@Query — Defines custom JPQL or native SQL query.
+JPQL — Query language operating on entities instead of tables.
+Native Query — Direct SQL query execution.
+Pagination — Fetching records page by page.
+Pageable — Interface used for pagination information.
+Sorting — Ordering query results ascending or descending.
+Lazy Loading — Loads related data only when accessed.
+Eager Loading — Loads related data immediately with parent entity.
+FetchType.LAZY — Delays fetching related entities.
+FetchType.EAGER — Fetches related entities immediately.
+@OneToOne — Defines one-to-one relationship between entities.
+@OneToMany — Defines one-to-many relationship.
+@ManyToOne — Defines many-to-one relationship.
+@ManyToMany — Defines many-to-many relationship.
+Cascade Type — Automatically propagates operations to child entities.
+CascadeType.ALL — Applies all operations to child entities.
+mappedBy — Defines non-owning side of relationship.
+Join Column — Foreign key column used for relationships.
+@JoinColumn — Specifies foreign key mapping.
+N+1 Problem — Multiple unnecessary DB queries caused by lazy loading.
+Hibernate Session — Persistence context managing entity lifecycle.
+Persistence Context — Cache storing managed entities temporarily.
+First Level Cache — Session-level cache enabled by default.
+Second Level Cache — Shared cache across sessions.
+Dirty Checking — Automatically detects entity changes before update.
+Transaction — Group of DB operations executed atomically.
+@Transactional — Manages transaction boundaries automatically.
+ACID Properties — Atomicity, Consistency, Isolation, Durability for transactions.
+Flush — Synchronizes persistence context with database.
+Commit — Permanently saves transaction changes to database.
+Rollback — Reverts transaction changes during failure.
+Optimistic Locking — Prevents concurrent update conflicts using versioning.
+@Version — Enables optimistic locking.
+Pessimistic Locking — Locks database rows during transaction execution.
+Projection — Fetches selected columns instead of full entity.
+DTO Projection — Maps query result directly into DTO object.
+Specification API — Builds dynamic queries programmatically.
+Criteria API — Type-safe dynamic query generation.
+Auditing — Automatically tracks created/updated details.
+@CreatedDate — Stores entity creation timestamp.
+@LastModifiedDate — Stores entity update timestamp.
+EntityManager — Core JPA interface for persistence operations.
+Hibernate Dialect — Adapts Hibernate SQL generation for specific DB.
+Open Session in View — Keeps Hibernate session open during request lifecycle.
+
+
+Unit Testing
+===============
+Unit Testing — Testing individual units/components of application independently.
+JUnit — Most commonly used Java unit testing framework.
+JUnit 5 — Latest version of JUnit with improved features and modular architecture.
+Test Case — Single testing scenario validating specific functionality.
+Test Suite — Collection of multiple test cases executed together.
+Assertion — Verifies expected and actual results in test cases.
+assertEquals() — Verifies two values are equal.
+assertNotEquals() — Verifies two values are not equal.
+assertTrue() — Verifies condition is true.
+assertFalse() — Verifies condition is false.
+assertNull() — Verifies object is null.
+assertNotNull() — Verifies object is not null.
+assertThrows() — Verifies expected exception is thrown.
+@Test — Marks method as test case.
+@BeforeEach — Runs before every test method.
+@AfterEach — Runs after every test method.
+@BeforeAll — Runs once before all test methods.
+@AfterAll — Runs once after all test methods.
+@Disabled — Skips execution of specific test case.
+@DisplayName — Provides custom readable test name.
+Parameterized Test — Executes same test with multiple inputs.
+@ParameterizedTest — Enables parameterized testing in JUnit 5.
+Test Coverage — Percentage of code covered by tests.
+Code Coverage Tool — Tool measuring executed code during testing.
+JaCoCo — Popular Java code coverage tool.
+Mocking — Creating fake objects for isolated testing.
+Mockito — Popular Java mocking framework.
+Mock Object — Simulated object replacing real dependency.
+@Mock — Creates mock object using Mockito.
+@InjectMocks — Injects mocked dependencies into target object.
+@Spy — Partial mocking of real object.
+when().thenReturn() — Defines mock behavior and return value.
+verify() — Verifies method interaction on mock object.
+times() — Verifies method invocation count.
+any() — Matches any argument value in Mockito.
+doThrow() — Forces mock method to throw exception.
+doNothing() — Prevents method execution in void methods.
+Stub — Predefined behavior for method calls in tests.
+Fake Object — Simplified working implementation used for testing.
+Integration Testing — Testing interaction between multiple components/modules.
+Spring Boot Test — Testing support provided by Spring Boot.
+@SpringBootTest — Loads complete Spring application context for testing.
+@WebMvcTest — Tests only Spring MVC controller layer.
+@DataJpaTest — Tests JPA repositories and database layer.
+MockMvc — Tests REST controllers without starting server.
+TestContainer — Runs real databases/services inside Docker during testing.
+H2 Database — In-memory database commonly used for testing.
+BDD Testing — Behavior-driven testing approach focusing on behavior/scenarios.
+Given-When-Then — Common BDD testing structure.
+TDD — Test Driven Development where tests are written before code.
+AAA Pattern — Arrange, Act, Assert structure in unit testing.
+Regression Testing — Ensures new changes do not break existing functionality.
+Smoke Testing — Basic testing verifying critical functionalities work.
+End-to-End Testing — Tests complete application workflow from start to finish.
+Test Fixture — Setup data/environment required for tests.
+Dependency Injection Testing — Injecting mocked dependencies into class under test.
+Isolation in Unit Testing — Testing component independently from external systems.
+Continuous Testing — Automated testing during CI/CD pipeline.
+SonarQube — Tool for code quality and coverage analysis.
+Mutation Testing — Validates test effectiveness by modifying code intentionally.
+Thread Safety Testing — Testing application behavior under concurrent execution.
+Performance Testing — Measures speed and scalability of application.
+Load Testing — Evaluates application behavior under heavy user load.
+Test Pyramid — Strategy emphasizing more unit tests than UI tests.
+
+Spring
+===========
+Spring Framework — Lightweight Java framework used for enterprise application development.
+IOC (Inversion of Control) — Spring controls object creation and dependency management.
+Dependency Injection (DI) — Injecting dependencies externally instead of creating manually.
+Bean — Object managed by Spring container.
+ApplicationContext — Advanced Spring IOC container managing beans and configurations.
+BeanFactory — Basic IOC container for managing Spring beans.
+Spring Container — Core component managing bean lifecycle and dependency injection.
+@Component — Generic annotation marking Spring-managed bean.
+@Service — Marks business logic layer bean.
+@Repository — Marks persistence/DAO layer bean.
+@Controller — Handles web requests in MVC architecture.
+@RestController — Specialized controller returning REST API responses.
+@Autowired — Automatically injects dependencies into beans.
+Constructor Injection — Dependency injection using constructor parameters.
+Setter Injection — Dependency injection using setter methods.
+Field Injection — Dependency injection directly on fields.
+Loose Coupling — Components depend on abstractions instead of concrete implementations.
+Tight Coupling — Components directly depend on each other strongly.
+@Qualifier — Resolves bean ambiguity when multiple beans exist.
+@Primary — Marks default bean among multiple candidates.
+@Bean — Explicitly defines Spring-managed bean in configuration class.
+@Configuration — Class containing bean definitions and Spring configuration.
+Singleton Scope — Single bean instance shared across application.
+Prototype Scope — New bean instance created every request.
+Request Scope — Bean created once per HTTP request.
+Session Scope — Bean created once per HTTP session.
+Bean Lifecycle — Process of bean creation, initialization, and destruction.
+InitializingBean — Interface for bean initialization callback.
+DisposableBean — Interface for bean destruction callback.
+Spring AOP — Aspect-Oriented Programming support in Spring.
+Aspect — Cross-cutting concern like logging/security.
+Advice — Action executed during specific join point.
+Join Point — Point during program execution where aspect applies.
+Pointcut — Expression selecting join points.
+Before Advice — Executes before method execution.
+After Advice — Executes after method execution.
+Around Advice — Executes before and after method execution.
+Spring MVC — Web framework implementing Model-View-Controller pattern.
+DispatcherServlet — Front controller handling all incoming requests.
+Model — Holds application/business data.
+View — UI representation of application data.
+Controller — Handles user requests and responses.
+Handler Mapping — Maps request URL to controller method.
+View Resolver — Resolves logical view names to actual pages.
+Spring JDBC — Simplifies JDBC database operations.
+JdbcTemplate — Helper class reducing JDBC boilerplate code.
+Transaction Management — Managing DB operations atomically.
+@Transactional — Enables declarative transaction management.
+Propagation — Defines transaction behavior when nested transactions occur.
+Isolation Level — Controls transaction visibility among concurrent transactions.
+Spring ORM — Integration support for ORM frameworks like Hibernate.
+Spring Security — Framework for authentication and authorization.
+Authentication — Verifying user identity.
+Authorization — Checking user access permissions.
+JWT Authentication — Stateless authentication using JSON Web Tokens.
+CSRF — Attack tricking users into unwanted actions.
+Spring Batch — Framework for large-scale batch processing.
+Spring Integration — Supports enterprise integration patterns.
+Spring Cloud — Tools for distributed microservices architecture.
+Spring Boot — Simplifies Spring application setup with auto configuration.
+Spring Profiles — Environment-specific bean/configuration management.
+@Profile — Activates beans for specific environment.
+Property Source — Externalized configuration source.
+Environment Object — Provides access to application properties and profiles.
+Event Listener — Handles application events asynchronously/synchronously.
+@EventListener — Annotation for listening application events.
+REST API — Stateless web services using HTTP protocols.
+SOAP — XML-based protocol for web services.
+Interceptor — Pre/post processing of HTTP requests.
+Filter — Servlet component intercepting requests/responses before Spring processing.
+Exception Handling — Managing application errors gracefully.
+@ControllerAdvice — Global exception handling across controllers.
+@ExceptionHandler — Handles specific exceptions in controllers.
+Spring Cache — Caching abstraction improving performance.
+@Cacheable — Stores method results in cache.
+Scheduling — Running tasks at fixed intervals/time.
+@Scheduled — Schedules task execution automatically.
+Async Processing — Running tasks asynchronously in background threads.
+@Async — Enables asynchronous method execution.
+
+
+Java Scripts
+===============
+JavaScript — High-level scripting language used for web development.
+ECMAScript (ES) — Standard specification followed by JavaScript.
+Variable — Container used to store data values.
+var — Function-scoped variable declaration.
+let — Block-scoped variable declaration allowing reassignment.
+const — Block-scoped variable declaration that cannot be reassigned.
+Hoisting — JavaScript moves declarations to top during compilation.
+Scope — Accessibility range of variables/functions.
+Global Scope — Variables accessible throughout application.
+Function Scope — Variables accessible only inside function.
+Block Scope — Variables accessible only inside {} block.
+Closure — Function remembering variables from outer scope even after execution.
+Callback Function — Function passed as argument to another function.
+Higher Order Function — Function accepting or returning another function.
+Arrow Function — Short syntax function introduced in ES6.
+Anonymous Function — Function without a name.
+IIFE — Immediately Invoked Function Expression executed instantly after definition.
+Promise — Object representing eventual completion or failure of async operation.
+Async/Await — Cleaner syntax for handling asynchronous operations.
+Event Loop — Mechanism handling async callbacks in JavaScript.
+Call Stack — Tracks function execution order.
+Microtask Queue — Queue for promises and mutation observers.
+Callback Queue — Queue for timers and async callbacks.
+Synchronous — Code executes line by line sequentially.
+Asynchronous — Code executes without blocking main thread.
+setTimeout() — Executes function after specified delay.
+setInterval() — Repeatedly executes function at intervals.
+clearTimeout() — Cancels scheduled timeout execution.
+clearInterval() — Stops repeated interval execution.
+DOM — Document Object Model representing webpage structure.
+BOM — Browser Object Model for browser interaction.
+Event Bubbling — Event propagates from child to parent.
+Event Capturing — Event propagates from parent to child.
+Event Delegation — Handling child events using parent listener.
+addEventListener() — Attaches event handler to element.
+this Keyword — Refers to current execution context object.
+call() — Invokes function with specified this and arguments.
+apply() — Similar to call but accepts arguments array.
+bind() — Returns new function with bound this context.
+Prototype — Mechanism enabling inheritance in JavaScript.
+Prototype Chain — Chain used to resolve properties/methods.
+Class — Template for creating objects introduced in ES6.
+Object — Collection of key-value pairs.
+Array — Ordered collection of values.
+Map — Key-value collection allowing any datatype as key.
+Set — Collection storing unique values only.
+WeakMap — Map holding weak object references.
+WeakSet — Set holding weak object references.
+Destructuring — Extracting values from arrays/objects easily.
+Spread Operator (...) — Expands iterable elements individually.
+Rest Operator (...) — Collects multiple values into array.
+Template Literals — String interpolation using backticks.
+Optional Chaining (?.) — Safely accesses nested properties.
+Nullish Coalescing (??) — Returns right value only if left is null/undefined.
+Truthy Values — Values evaluated as true in boolean context.
+Falsy Values — Values evaluated as false (0, null, undefined, etc.).
+Type Coercion — Automatic datatype conversion by JavaScript.
+== Operator — Compares values after type conversion.
+=== Operator — Strict comparison without type conversion.
+NaN — Represents invalid numeric value.
+Undefined — Variable declared but not assigned.
+Null — Intentional absence of value.
+Deep Copy — Creates completely independent object copy.
+Shallow Copy — Copies references for nested objects.
+Local Storage — Browser storage persisting even after browser close.
+Session Storage — Browser storage cleared after session ends.
+Cookie — Small browser-stored data sent with requests.
+Debouncing — Delays function execution until user stops triggering event.
+Throttling — Limits function execution frequency.
+Memoization — Caches function results for performance optimization.
+Currying — Converting function with multiple arguments into nested single-argument functions.
+Pure Function — Function producing same output for same input without side effects.
+Side Effect — Operation affecting external state outside function.
+Module — Reusable JavaScript file with isolated scope.
+Export — Makes variables/functions accessible outside module.
+Import — Uses exported members from another module.
+JSON — Lightweight data interchange format.
+AJAX — Asynchronous browser-server communication without page reload.
+Fetch API — Modern API for making HTTP requests.
+CORS — Security mechanism controlling cross-origin requests.
+Strict Mode — Enables stricter JavaScript parsing and error handling.
+Garbage Collection — Automatic memory cleanup for unused objects.
+
+
+React
+===========
+React — JavaScript library used for building component-based user interfaces.
+Component — Reusable independent UI building block in React.
+Functional Component — React component written using JavaScript function.
+Class Component — Older React component syntax using ES6 classes.
+JSX — HTML-like syntax used inside JavaScript in React.
+Props — Read-only data passed from parent to child component.
+State — Internal mutable data managed inside component.
+useState — Hook used to manage state in functional components.
+useEffect — Hook used for side effects like API calls and subscriptions.
+Dependency Array — Controls when useEffect executes.
+useRef — Hook used to persist mutable values without re-rendering.
+useMemo — Memoizes computed values for performance optimization.
+useCallback — Memoizes functions to avoid unnecessary re-creations.
+useContext — Accesses shared global data without prop drilling.
+Context API — State-sharing mechanism across components.
+Prop Drilling — Passing props through multiple nested components unnecessarily.
+Virtual DOM — Lightweight copy of real DOM used for efficient updates.
+Reconciliation — React process comparing Virtual DOM changes efficiently.
+Key Prop — Unique identifier helping React optimize list rendering.
+Conditional Rendering — Rendering UI based on conditions.
+Controlled Component — Form element controlled by React state.
+Uncontrolled Component — Form element managed using DOM refs directly.
+Lifting State Up — Moving shared state to common parent component.
+React Fragment — Groups multiple elements without extra DOM node.
+React Router — Library used for client-side routing in React apps.
+Route — Defines component mapping for specific URL path.
+BrowserRouter — Enables browser history-based routing.
+Link — Navigates between routes without page refresh.
+Navigate — Programmatic route redirection component.
+useNavigate — Hook for navigation programmatically.
+Redux — State management library for large React applications.
+Store — Centralized state container in Redux.
+Action — Object describing state change intention.
+Reducer — Pure function updating Redux state.
+Dispatch — Sends actions to Redux store.
+Middleware — Intercepts Redux actions for async/logging operations.
+Redux Thunk — Middleware handling asynchronous Redux actions.
+Redux Toolkit — Simplified modern Redux development approach.
+React Query — Library for server-state fetching and caching.
+Custom Hook — Reusable logic extracted into separate function.
+Higher Order Component (HOC) — Function enhancing existing component behavior.
+Render Props — Sharing logic using function props.
+Pure Component — Component avoiding unnecessary re-renders using shallow comparison.
+React.memo — Prevents re-rendering when props do not change.
+Lazy Loading — Loading components only when needed.
+Suspense — Displays fallback UI while lazy-loaded component loads.
+Code Splitting — Breaking application bundle into smaller chunks.
+Error Boundary — Catches JavaScript errors in component tree.
+Synthetic Event — Cross-browser wrapper around native browser events.
+Refs — Direct access to DOM elements/components.
+Forward Ref — Passes refs from parent to child component.
+Portal — Renders component outside normal parent DOM hierarchy.
+StrictMode — Tool highlighting potential React problems during development.
+Hydration — Attaching React functionality to server-rendered HTML.
+SSR — Server Side Rendering generating HTML on server.
+CSR — Client Side Rendering rendering UI in browser.
+Next.js — React framework supporting SSR and full-stack features.
+Vite — Fast frontend build tool commonly used with React.
+Webpack — Module bundler for React applications.
+Babel — JavaScript compiler converting modern JS into browser-compatible code.
+npm — Package manager for installing JavaScript libraries.
+yarn — Alternative package manager for JavaScript projects.
+State Management — Managing application data flow and updates.
+Immutability — Avoiding direct modification of existing state objects.
+One-Way Data Binding — Data flows only from parent to child.
+Hooks — Functions enabling state and lifecycle features in functional components.
+useLayoutEffect — Runs synchronously after DOM updates before browser paint.
+useReducer — Hook managing complex state logic using reducers.
+useImperativeHandle — Customizes ref values exposed to parent.
+React Fiber — React’s internal rendering engine improving UI responsiveness.
+Concurrent Rendering — React rendering feature improving UI performance and responsiveness.
+Batching — Grouping multiple state updates into single re-render.
+Hydration Error — Mismatch between server-rendered and client-rendered HTML.
+Memoization — Caching results to improve performance.
+Debouncing — Delaying rapid event execution like search input.
+Throttling — Limiting function execution frequency during events.
+Profiler — React tool for measuring rendering performance.
