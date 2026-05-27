@@ -118,54 +118,136 @@ Microservices
 =================
 Microservices — Architecture where applications are split into small independently deployable services.
 Monolith — Single large application where all modules are tightly coupled.
-Service Discovery — Mechanism for services to find and communicate with each other dynamically.
-Eureka Server — Service registry used for registering and discovering microservices.
-API Gateway — Single entry point for routing, security, and request handling.
-Load Balancing — Distributes requests across multiple service instances.
+Service Discovery — Service Discovery — A mechanism that allows services to dynamically find and communicate with each other without hardcoded addresses.
+Eureka Server — Netflix OSS service registry where microservices register themselves and discover other services at runtime.
+API Gateway — Single entry point for all client requests, handling routing, authentication, rate limiting, and load balancing.
+Load Balancing — Distributes incoming requests evenly across multiple service instances to avoid overloading any single instance.
 Feign Client — Declarative REST client for service-to-service communication.
 REST API — Communication style using HTTP methods like GET, POST, PUT, DELETE.
-Synchronous Communication — Service waits for immediate response from another service.
-Asynchronous Communication — Service communicates using queues/events without waiting.
-Circuit Breaker — Prevents cascading failures when dependent service is down.
-Retry Mechanism — Automatically retries failed requests temporarily.
-Fallback — Alternative response when service call fails.
-Resilience4j — Fault tolerance library implementing circuit breaker and retry patterns.
-Distributed Tracing — Tracks requests across multiple microservices.
-Sleuth — Adds trace IDs and span IDs for request tracking.
-Zipkin — Distributed tracing tool for monitoring request flow.
-Centralized Logging — Aggregating logs from multiple services into one system.
-ELK Stack — Elasticsearch, Logstash, and Kibana used for log management.
-Config Server — Centralized configuration management for microservices.
+Synchronous Communication — A microservice directly calls another and waits for a response before proceeding.
+Asynchronous Communication — A microservice sends an event or message to a queue/broker without waiting for the consumer to process it.
+Circuit Breaker — A resilience pattern that stops forwarding requests to a failing service and returns a fallback to prevent cascading failures.
+Retry Mechanism — Automatically re-attempts a failed service call a configured number of times before giving up.
+Fallback — A predefined alternative response or action executed when a service call fails or times out.
+Resilience4j — A lightweight Java fault-tolerance library providing circuit breaker, retry, rate limiter, and bulkhead patterns.
+Distributed Tracing — Technique for tracking and visualizing the full journey of a request as it passes through multiple microservices.
+Sleuth — Spring Cloud library that automatically adds trace IDs and span IDs to logs for distributed request tracing.
+Zipkin — Open-source distributed tracing system that collects, stores, and visualizes timing data across microservices.
+Centralized Logging — Aggregating logs from all microservices into a single platform for unified monitoring and debugging.
+ELK Stack — Combination of Elasticsearch (search), Logstash (ingestion), and Kibana (visualization) for centralized log management.
+Config Server — Centralized service that provides externalized configuration for all microservices from a single source (e.g., Git).
 Spring Cloud Config — Externalized centralized configuration service.
-Docker — Containerization platform used to package applications with dependencies.
-Containerization — Packaging application and dependencies together for portability.
-Kubernetes — Container orchestration platform for deployment and scaling.
-Horizontal Scaling — Increasing service instances to handle more traffic.
-Vertical Scaling — Increasing CPU/RAM of existing server.
-Database Per Service — Each microservice owns its separate database.
-Distributed Transaction — Transaction spanning multiple microservices/databases.
-Saga Pattern — Manages distributed transactions using compensating actions.
-Event-Driven Architecture — Services communicate through events/messages.
+Docker — Containerization platform that packages an application and its dependencies into a portable image that runs consistently anywhere.
+Containerization — Bundling application code, libraries, and runtime into a container for consistent, environment-independent deployment.
+Kubernetes — Open-source container orchestration platform for automating deployment, scaling, and management of containerized applications.
+Horizontal Scaling — Increasing the number of service instances to handle more traffic instead of upgrading server hardware.
+Vertical Scaling — Increasing the CPU or memory capacity of an existing server to improve its performance.
+Database Per Service — Design principle where each microservice manages its own dedicated database to maintain loose coupling.
+Distributed Transaction — A transaction that spans multiple microservices or databases and must remain consistent across all of them.
+Saga Pattern — Manages distributed transactions by breaking them into a series of local transactions with compensating actions on failure.
+Event-Driven Architecture — Design pattern where services communicate by producing and consuming events through a message broker.
+Strangler Fig Pattern — Gradually replaces a legacy monolith by routing new functionality to microservices while keeping the old system running in parallel until fully replaced.
+Outbox Pattern — Ensures atomicity between a database write and a message publish by writing the event to an outbox table in the same transaction, then publishing it asynchronously.
+Sidecar Pattern — Deploys a helper process (e.g., logging agent, proxy) alongside the main service container in the same pod to offload cross-cutting concerns.
+Aggregator Pattern — A service that calls multiple downstream microservices, collects their responses, and returns a single combined result to the client.
+Chained Microservice Pattern — A request passes through a sequence of services in a chain where each service processes and passes output to the next.
+Event Sourcing — Persists the state of an entity as an ordered sequence of immutable domain events rather than the current state, enabling full audit trail and replay.
+Two-Phase Commit (2PC) — A distributed transaction protocol where a coordinator asks all participants to prepare, then commits only if all agree; avoided in microservices due to tight coupling and blocking.
+Compensating Transaction — An operation that semantically undoes a previously completed step in a saga when a later step fails, restoring business consistency without true rollback.
+Service Mesh Pattern — Offloads inter-service communication concerns (load balancing, retries, mTLS, tracing) to a dedicated infrastructure layer like Istio, freeing services from that logic.
+Backends for Frontends (BFF) — Creates a separate API gateway/backend tailored for each type of client (mobile, web, third-party), avoiding a one-size-fits-all API.
+Throttling Pattern — Limits the rate at which a service processes requests from a client to protect against overload and ensure fair resource usage.
+Rate Limiting — Enforces a maximum number of requests a client can make in a given time window, commonly implemented at the API Gateway.
+Health Check Pattern — Each microservice exposes a /health endpoint that reports its liveness and readiness status, used by load balancers and orchestrators to route traffic.
+Leader Election Pattern — When multiple instances of a service run concurrently, one is elected as leader to perform a singleton task (e.g., scheduled job), preventing duplication.
+Choreography (Saga) — Services react to domain events published by other services without a central coordinator; each service knows what to do when it receives a specific event.
+Orchestration (Saga) — A central saga orchestrator explicitly tells each service what to do and handles compensation logic when a step fails.
+API Composition Pattern — A query is handled by calling multiple services and joining the results in memory at the API layer, used when data spans multiple service databases.
+Gateway Aggregation — The API Gateway aggregates multiple fine-grained service calls into a single response, reducing client round trips.
+Gateway Offloading — Cross-cutting concerns like authentication, SSL termination, logging, and rate limiting are offloaded to the API Gateway instead of each service.
+Client-Side Load Balancing — The client fetches the service instance list from the registry and decides which instance to call (e.g., Ribbon, Spring Cloud LoadBalancer).
+Server-Side Load Balancing — A load balancer sits between the client and service instances and routes requests, hiding instance details from the client.
+Retry with Exponential Backoff — On failure, the client waits an exponentially increasing delay before each retry attempt to avoid overwhelming a recovering service.
+Idempotent Consumer — A message consumer that safely handles duplicate messages by checking whether a message has already been processed before acting on it.
 Kafka — Distributed event streaming platform for asynchronous communication.
 RabbitMQ — Message broker used for asynchronous messaging.
 Idempotency — Same request produces same result even if repeated multiple times.
 OAuth2 — Authorization framework for secure API access.
-JWT Token — Token-based authentication mechanism for stateless security.
-Stateless Service — Service that does not store client session data locally.
-Blue-Green Deployment — Deployment strategy switching traffic between old and new environments.
-Canary Deployment — Releasing new version gradually to small subset of users.
-CI/CD — Automated build, testing, and deployment pipeline.
-Jenkins — Automation server commonly used for CI/CD pipelines.
-Prometheus — Monitoring and metrics collection tool.
-Grafana — Visualization dashboard for monitoring metrics.
-OpenAPI/Swagger — API documentation and testing framework.
-Service Mesh — Infrastructure layer managing service communication and security.
-Istio — Popular service mesh implementation for Kubernetes.
-gRPC — High-performance communication protocol using Protocol Buffers.
+JWT Token — A compact, self-contained token used for stateless authentication by encoding user claims in a signed JSON structure.
+Stateless Service — A service that does not retain any client session data between requests; each request is fully self-contained.
+Blue-Green Deployment — Deployment strategy maintaining two identical environments (blue/green) and switching traffic to the new version with zero downtime.
+Canary Deployment — Gradually rolling out a new version to a small percentage of users to validate it before full release.
+CI/CD — Automated pipeline for continuously integrating code changes, running tests, and deploying to production.
+Jenkins — Open-source automation server widely used to create CI/CD pipelines for building, testing, and deploying applications.
+Prometheus — Open-source monitoring system that scrapes and stores time-series metrics from services and infrastructure.
+Grafana — Visualization tool used to build dashboards and alerts on top of metrics from sources like Prometheus.
+OpenAPI/Swagger — Specification and toolset for designing, documenting, and testing RESTful APIs in a standardized way.
+Service Mesh — Dedicated infrastructure layer handling service-to-service communication, security, and observability (e.g., Istio).
+Istio — Open-source service mesh that manages traffic, enforces policies, and provides observability for Kubernetes-based microservices.
+gRPC — High-performance RPC framework using HTTP/2 and Protocol Buffers for efficient, strongly-typed inter-service communication.
 CAP Theorem — Distributed systems can guarantee only two of Consistency, Availability, and Partition Tolerance.
 Bulkhead Pattern — Isolates failures to prevent entire system impact.
-CQRS — Separates read and write operations into different models.
+CQRS — Command Query Responsibility Segregation; separates read (query) and write (command) models for scalability and clarity.
 Eventual Consistency — Data becomes consistent over time across services.
+
+Docker
+===============
+Docker Image — A read-only, layered template built from a Dockerfile that contains the application code, runtime, libraries, and configuration needed to create a container.
+Docker Container — A running instance of a Docker image; an isolated, lightweight process with its own filesystem, network, and process space.
+Dockerfile — A plain-text script containing a sequence of instructions (FROM, RUN, COPY, CMD, etc.) that Docker uses to build an image automatically.
+Docker Hub — A public cloud-based registry for storing, sharing, and pulling Docker images; the default registry used by the Docker CLI.
+Docker Registry — A storage and distribution system for Docker images; can be public (Docker Hub) or private (AWS ECR, Harbor, GitLab Registry).
+docker build — Reads a Dockerfile and builds a new Docker image layer by layer, tagging it with a name and version.
+docker run — Creates and starts a new container from a specified image, optionally mapping ports, volumes, and environment variables.
+docker pull — Downloads a Docker image from a registry to the local machine without running it.
+docker push — Uploads a locally built Docker image to a remote registry for sharing or deployment.
+docker ps — Lists all currently running containers; use docker ps -a to include stopped containers.
+docker stop — Gracefully stops a running container by sending a SIGTERM signal followed by SIGKILL if it does not stop in time.
+docker rm — Removes one or more stopped containers from the local system.
+docker rmi — Deletes one or more Docker images from the local image cache.
+docker exec — Runs a command inside an already running container, commonly used to open an interactive shell for debugging.
+docker logs — Fetches and displays the stdout/stderr logs output by a running or stopped container.
+docker inspect — Returns detailed low-level JSON information about a container, image, or network including configuration and state.
+docker images — Lists all Docker images stored locally along with their tag, image ID, and size.
+docker-compose — A tool for defining and running multi-container Docker applications using a docker-compose.yml file with a single command.
+docker-compose.yml — A YAML file that describes the services, networks, and volumes for a multi-container application managed by Docker Compose.
+docker-compose up — Builds, creates, and starts all containers defined in the docker-compose.yml file in the correct dependency order.
+docker-compose down — Stops and removes all containers, networks, and optionally volumes defined in the docker-compose.yml file.
+Layer — Each instruction in a Dockerfile creates an immutable read-only layer; Docker caches layers to speed up subsequent builds.
+Layer Caching — Docker reuses unchanged layers from previous builds, significantly reducing build time by only rebuilding layers that changed.
+Base Image — The starting image specified in the FROM instruction of a Dockerfile on which all subsequent layers are stacked.
+Multi-Stage Build — A Dockerfile technique using multiple FROM instructions to separate build and runtime stages, producing a smaller, cleaner final image.
+Entrypoint — The ENTRYPOINT instruction in a Dockerfile defines the executable that always runs when the container starts; arguments from CMD are appended.
+CMD — Provides default arguments or the default command to run in a container; can be overridden at docker run time.
+EXPOSE — Documents which port the containerized application listens on at runtime; does not publish the port to the host.
+Port Mapping (-p) — Maps a host machine port to a container port so external traffic can reach the containerized application.
+Volume — A persistent, managed storage unit that exists outside the container's filesystem and survives container restarts and deletions.
+Bind Mount — Mounts a specific directory from the host machine directly into the container, useful for development with live code reloading.
+Docker Network — A virtual network that allows containers to communicate with each other securely and in isolation from the host or other networks.
+Bridge Network — Default Docker network driver that creates an isolated internal network where containers on the same host can communicate.
+Host Network — A network mode where the container shares the host machine's network stack directly, with no network isolation.
+Overlay Network — Docker network driver that enables containers running on different Docker hosts (in a Swarm) to communicate securely.
+ENV — Dockerfile instruction that sets environment variables inside the image, accessible to the application at runtime.
+ARG — Dockerfile instruction that defines build-time variables passed with --build-arg; not available in the running container.
+Docker Swarm — Docker's built-in native clustering and orchestration tool for deploying and managing services across multiple Docker hosts.
+Docker Desktop — A GUI application for macOS and Windows that bundles Docker Engine, Docker CLI, Docker Compose, and Kubernetes in one install.
+Docker Context — A configuration that tells the Docker CLI which Docker Engine to connect to (local, remote, or cloud-based).
+Healthcheck — A Dockerfile or Compose instruction that defines a command Docker runs periodically to verify the container is still healthy.
+Container Orchestration — Automated management of container lifecycle including scheduling, scaling, networking, and self-healing across a cluster.
+ECR (Elastic Container Registry) — AWS's fully managed private Docker container registry for storing, managing, and deploying container images securely.
+Image Tag — A label (e.g., latest, v1.0.0) appended to an image name to identify a specific version of that image.
+docker tag — Creates an additional tag/alias for an existing local image, typically used before pushing to a registry with a new name or version.
+docker network ls — Lists all Docker networks currently configured on the host.
+docker volume ls — Lists all Docker volumes currently created on the host.
+docker system prune — Removes all stopped containers, unused networks, dangling images, and optionally unused volumes to free disk space.
+Dangling Image — An untagged image layer that is no longer referenced by any named image, typically left over from builds; safely removable.
+Container Lifecycle — The sequence of states a container passes through: Created, Running, Paused, Stopped, and Removed.
+Immutable Infrastructure — A deployment philosophy where containers are never modified after deployment; changes are made by replacing containers with new images.
+Docker Daemon — The background service (dockerd) running on the host that manages images, containers, networks, and volumes via the Docker API.
+Docker CLI — The command-line client (docker) that communicates with the Docker Daemon via REST API to execute user commands.
+Namespace — Linux kernel feature used by Docker to isolate container processes, file systems, network stacks, and user IDs from each other and the host.
+cgroups (Control Groups) — Linux kernel feature used by Docker to limit and monitor CPU, memory, and I/O resource usage per container.
+Union File System — A layered filesystem (e.g., OverlayFS) that Docker uses to stack image layers efficiently without duplicating data.
 
 Multithreading
 ===================
@@ -684,89 +766,88 @@ Template Method pattern.
 
 Java Scripts
 ===============
-JavaScript — High-level scripting language used for web development.
-ECMAScript (ES) — Standard specification followed by JavaScript.
-Variable — Container used to store data values.
-var — Function-scoped variable declaration.
-let — Block-scoped variable declaration allowing reassignment.
+JavaScript — A dynamic, interpreted, single-threaded scripting language primarily used to add interactivity to web pages.
+ECMAScript (ES) — The official standard specification that defines the core features and syntax of the JavaScript language.
+Variable — A named container that stores a value which can be referenced and manipulated throughout the program.
+var — Function-scoped or globally-scoped variable declaration that is hoisted to the top of its scope.
+let — Block-scoped variable declaration introduced in ES6 that allows reassignment but not re-declaration in the same scope.
 const — Block-scoped variable declaration that cannot be reassigned.
-Hoisting — JavaScript moves declarations to top during compilation.
-Scope — Accessibility range of variables/functions.
+Hoisting — JavaScript's behavior of moving variable and function declarations to the top of their scope before execution.
+Scope — The region of code where a variable or function is accessible and valid.
 Global Scope — Variables accessible throughout application.
 Function Scope — Variables accessible only inside function.
 Block Scope — Variables accessible only inside {} block.
 Closure — Function remembering variables from outer scope even after execution.
-Callback Function — Function passed as argument to another function.
-Higher Order Function — Function accepting or returning another function.
-Arrow Function — Short syntax function introduced in ES6.
-Anonymous Function — Function without a name.
-IIFE — Immediately Invoked Function Expression executed instantly after definition.
-Promise — Object representing eventual completion or failure of async operation.
+Callback Function — A function passed as an argument to another function to be invoked at a later point in time.
+Higher Order Function — A function that takes one or more functions as arguments or returns a function as its result.
+Arrow Function — A concise function syntax introduced in ES6 using => that does not bind its own this.
+Anonymous Function — A function without a name, typically assigned to a variable or passed as an argument.
+IIFE — Immediately Invoked Function Expression; a function that is defined and called immediately upon creation.
+Promise — An object representing the eventual completion or failure of an asynchronous operation, with .then() and .catch().
 Async/Await — Cleaner syntax for handling asynchronous operations.
-Event Loop — Mechanism handling async callbacks in JavaScript.
-Call Stack — Tracks function execution order.
-Microtask Queue — Queue for promises and mutation observers.
-Callback Queue — Queue for timers and async callbacks.
-Synchronous — Code executes line by line sequentially.
-Asynchronous — Code executes without blocking main thread.
+Event Loop — JavaScript's runtime mechanism that picks tasks from the callback queue and executes them on the call stack.
+Call Stack — A LIFO data structure that tracks the currently executing function and the sequence of function calls.
+Microtask Queue — A higher-priority queue (than the callback queue) for resolved Promises and mutation observer callbacks.
+Callback Queue — A queue (also called macro-task queue) holding callbacks from setTimeout, setInterval, and I/O events.
+Synchronous — Code that executes sequentially, line by line, blocking the thread until each operation completes.
+Asynchronous — Code that initiates an operation and continues execution without waiting for the operation to finish.
 setTimeout() — Executes function after specified delay.
-setInterval() — Repeatedly executes function at intervals.
-clearTimeout() — Cancels scheduled timeout execution.
-clearInterval() — Stops repeated interval execution.
-DOM — Document Object Model representing webpage structure.
-BOM — Browser Object Model for browser interaction.
-Event Bubbling — Event propagates from child to parent.
+setInterval() — Repeatedly executes a function at a specified interval in milliseconds until cleared.
+clearTimeout() — Cancels a scheduled setTimeout before the callback has had a chance to execute.
+clearInterval() — Stops a setInterval from executing any further callbacks.
+DOM — Document Object Model; a tree-structured, in-memory representation of the HTML document that JavaScript can manipulate.
+BOM — Browser Object Model; provides JavaScript access to browser features like window, navigator, location, and history.
+Event Bubbling — An event triggered on a child element propagates upward through its ancestors in the DOM tree.
 Event Capturing — Event propagates from parent to child.
 Event Delegation — Handling child events using parent listener.
 addEventListener() — Attaches event handler to element.
-this Keyword — Refers to current execution context object.
-call() — Invokes function with specified this and arguments.
-apply() — Similar to call but accepts arguments array.
-bind() — Returns new function with bound this context.
-Prototype — Mechanism enabling inheritance in JavaScript.
-Prototype Chain — Chain used to resolve properties/methods.
-Class — Template for creating objects introduced in ES6.
-Object — Collection of key-value pairs.
+this Keyword — A special keyword whose value is determined by how and where a function is called; refers to the current context.
+call() — Invokes a function with a specified this value and individual arguments passed comma-separated.
+apply() — Invokes a function with a specified this value and arguments passed as an array.
+bind() — Returns a new function permanently bound to a specified this value and optional preset arguments.
+Prototype — An internal object that every JavaScript object inherits from, enabling shared properties and method inheritance.
+Prototype Chain — The chain of prototype links traversed when looking up a property not found on the immediate object.
+Class — ES6 syntactic sugar over prototype-based inheritance for defining objects with constructor and methods.
+Object — A collection of key-value pairs (properties and methods) that can represent real-world entities.
 Array — Ordered collection of values.
 Map — Key-value collection allowing any datatype as key.
 Set — Collection storing unique values only.
 WeakMap — Map holding weak object references.
 WeakSet — Set holding weak object references.
-Destructuring — Extracting values from arrays/objects easily.
-Spread Operator (...) — Expands iterable elements individually.
-Rest Operator (...) — Collects multiple values into array.
+Destructuring — A syntax for unpacking values from arrays or properties from objects into distinct variables.
+Spread Operator (...) — Expands an iterable (array, object) into individual elements in function calls or literals.
+Rest Operator (...) — Collects the remaining arguments in a function parameter or remaining elements in destructuring into an array.
 Template Literals — String interpolation using backticks.
-Optional Chaining (?.) — Safely accesses nested properties.
+Optional Chaining (?.) — Safely accesses deeply nested object properties, returning undefined instead of throwing if a reference is null.
 Nullish Coalescing (??) — Returns right value only if left is null/undefined.
-Truthy Values — Values evaluated as true in boolean context.
-Falsy Values — Values evaluated as false (0, null, undefined, etc.).
+Truthy Values — Values that evaluate to true in a boolean context (everything except the six falsy values).
+Falsy Values — The six values that evaluate to false: false, 0, "", null, undefined, and NaN.
 Type Coercion — Automatic datatype conversion by JavaScript.
-== Operator — Compares values after type conversion.
-=== Operator — Strict comparison without type conversion.
+== Operator — Loose equality operator that compares values after performing type coercion if types differ.
+=== Operator — Strict equality operator that compares both value and type without any coercion.
 NaN — Represents invalid numeric value.
 Undefined — Variable declared but not assigned.
 Null — Intentional absence of value.
 Deep Copy — Creates completely independent object copy.
-Shallow Copy — Copies references for nested objects.
+Shallow Copy — Copies an object's top-level properties; nested objects still share the same reference.
 Local Storage — Browser storage persisting even after browser close.
 Session Storage — Browser storage cleared after session ends.
-Cookie — Small browser-stored data sent with requests.
+Cookie — Small text data stored in the browser and sent automatically with every HTTP request to the server.
 Debouncing — Delays function execution until user stops triggering event.
 Throttling — Limits function execution frequency.
-Memoization — Caches function results for performance optimization.
+Memoization — Optimization technique that caches function return values for previously seen inputs to avoid recomputation.
 Currying — Converting function with multiple arguments into nested single-argument functions.
-Pure Function — Function producing same output for same input without side effects.
+Pure Function — A function that always returns the same output for the same input and produces no side effects.
 Side Effect — Operation affecting external state outside function.
 Module — Reusable JavaScript file with isolated scope.
 Export — Makes variables/functions accessible outside module.
 Import — Uses exported members from another module.
 JSON — Lightweight data interchange format.
 AJAX — Asynchronous browser-server communication without page reload.
-Fetch API — Modern API for making HTTP requests.
-CORS — Security mechanism controlling cross-origin requests.
+Fetch API — Modern browser API for making HTTP requests that returns Promises, replacing XMLHttpRequest.
+CORS — Cross-Origin Resource Sharing; a browser security mechanism that controls HTTP requests to a different origin.
 Strict Mode — Enables stricter JavaScript parsing and error handling.
 Garbage Collection — Automatic memory cleanup for unused objects.
-
 
 React
 ===========
