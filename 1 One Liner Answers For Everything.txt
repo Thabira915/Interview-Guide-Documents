@@ -1192,3 +1192,286 @@ Bare Repository — Repository without working directory mainly for remotes.
 Monorepo — Single repository containing multiple projects/services.
 Patch — File representing code changes between commits.
 Git Archive — Exports repository files without .git history.
+
+System Design 
+===============
+System Design — Designing scalable, reliable, and maintainable software systems.
+Scalability — Ability of system to handle increasing load efficiently.
+High Availability — System remains operational with minimal downtime.
+Reliability — System consistently performs expected operations correctly.
+Fault Tolerance — System continues functioning even after failures.
+Latency — Time taken to process request and return response.
+Throughput — Number of requests processed per second.
+Horizontal Scaling — Adding more servers to distribute load.
+Vertical Scaling — Increasing CPU/RAM of existing server.
+Load Balancer — Distributes traffic across multiple servers.
+Reverse Proxy — Server handling client requests before backend services.
+API Gateway — Single entry point managing APIs and routing.
+Rate Limiting — Restricting request frequency to prevent abuse.
+Caching — Storing frequently accessed data for faster retrieval.
+Cache Hit — Requested data found in cache.
+Cache Miss — Requested data not found in cache.
+Redis — In-memory datastore commonly used for caching.
+CDN — Delivers content from geographically closer servers.
+Database Sharding — Splitting database across multiple servers.
+Partitioning — Dividing large dataset into smaller parts.
+Replication — Maintaining copies of data across servers.
+Master-Slave Replication — Primary DB handles writes while replicas handle reads.
+Read Replica — Secondary database serving read operations.
+Consistency — All users see same latest data.
+Eventual Consistency — Data becomes consistent over time.
+CAP Theorem — Distributed systems guarantee only two among Consistency, Availability, Partition Tolerance.
+ACID — Transaction guarantees for relational databases.
+BASE — Basically Available, Soft state, Eventual consistency model.
+SQL Database — Relational database with structured schema.
+NoSQL Database — Flexible schema database optimized for scalability.
+Document Database — NoSQL DB storing JSON-like documents.
+Key-Value Store — NoSQL DB storing key-value pairs.
+Columnar Database — Database optimized for analytical queries.
+Graph Database — Database optimized for relationship-based queries.
+Microservices — Architecture splitting application into independent services.
+Monolith — Single tightly coupled application architecture.
+Service Discovery — Dynamic detection of service locations.
+Circuit Breaker — Prevents cascading failures between services.
+Retry Mechanism — Automatically retries failed operations.
+Bulkhead Pattern — Isolates failures between components/resources.
+Saga Pattern — Handles distributed transactions using compensating actions.
+CQRS — Separates read and write operations.
+Event Sourcing — Stores state changes as events.
+Message Queue — Enables asynchronous communication between systems.
+Kafka — Distributed event streaming platform.
+RabbitMQ — Message broker for asynchronous messaging.
+Pub/Sub Model — Publishers send events to multiple subscribers.
+Producer — Service sending messages/events.
+Consumer — Service processing messages/events.
+Idempotency — Same request produces same result repeatedly.
+Distributed Lock — Lock mechanism across distributed systems.
+Sticky Session — Client routed repeatedly to same server.
+Stateless Service — Service not storing session data locally.
+Stateful Service — Service maintaining client/session state.
+Health Check — Mechanism checking service availability.
+Heartbeat — Periodic signal confirming server/service alive status.
+Failover — Switching to backup system during failure.
+Disaster Recovery — Restoring systems after catastrophic failure.
+Blue-Green Deployment — Switching traffic between old and new environments.
+Canary Deployment — Gradually releasing new version to limited users.
+Rolling Deployment — Updating servers incrementally without downtime.
+CI/CD — Automated build, test, and deployment pipeline.
+Docker — Containerization platform packaging app with dependencies.
+Containerization — Packaging application and runtime together.
+Kubernetes — Container orchestration platform for scaling/deployment.
+Pod — Smallest deployable unit in Kubernetes.
+Ingress — Routes external traffic into Kubernetes services.
+Observability — Monitoring internal system state using logs/metrics/traces.
+Logging — Recording system/application events.
+Monitoring — Tracking system health and performance metrics.
+Alerting — Notifying teams about failures or threshold breaches.
+Distributed Tracing — Tracking requests across multiple services.
+Prometheus — Metrics collection and monitoring tool.
+Grafana — Dashboard visualization tool for metrics.
+ELK Stack — Elasticsearch, Logstash, Kibana for centralized logging.
+SLA — Service Level Agreement defining expected uptime/performance.
+SLO — Internal reliability/performance target.
+SLI — Measurement metric for service performance.
+Hotspot — Overloaded server/resource causing bottleneck.
+Bottleneck — Component limiting system performance.
+Backpressure — System slowing incoming traffic during overload.
+Throttling — Intentionally limiting request processing rate.
+Autoscaling — Automatically increasing/decreasing resources based on load.
+Long Polling — Client waits until server has data available.
+WebSocket — Full-duplex persistent communication protocol.
+Polling — Client repeatedly checking server for updates.
+DNS — Converts domain names into IP addresses.
+TLS/SSL — Encryption protocol securing network communication.
+OAuth2 — Authorization framework for secure API access.
+JWT — Stateless token-based authentication mechanism.
+Zero Downtime Deployment — Deploying application without service interruption.
+Data Lake — Centralized storage for raw structured/unstructured data.
+Data Warehouse — Optimized storage for analytics/reporting.
+OLTP — Online transactional processing systems.
+OLAP — Analytical processing systems for reporting.
+
+
+Performance / Optimization
+==================================
+Performance Optimization — Improving application speed, scalability, and resource usage.
+Scalability — Ability to handle increased load efficiently.
+Latency — Time taken to process single request.
+Throughput — Number of requests processed per second.
+Bottleneck — Component limiting system performance.
+Profiling — Analyzing application performance and resource usage.
+CPU Bound Task — Task mainly limited by CPU processing power.
+IO Bound Task — Task mainly waiting for I/O operations.
+Memory Leak — Unused objects retained in memory unnecessarily.
+Garbage Collection (GC) — Automatic memory cleanup for unused objects.
+Minor GC — Cleans young generation memory.
+Major GC — Cleans old generation memory.
+Full GC — Cleans entire heap causing application pause.
+Heap Memory — JVM memory storing objects.
+Stack Memory — JVM memory storing method calls and local variables.
+JVM Tuning — Adjusting JVM settings for better performance.
+G1 GC — Low-pause garbage collector for large heap applications.
+ZGC — Ultra-low latency scalable garbage collector.
+CMS GC — Concurrent collector minimizing pause times.
+JIT Compiler — Converts bytecode into optimized native machine code.
+Escape Analysis — JVM optimization deciding object allocation location.
+Object Pooling — Reusing objects instead of creating repeatedly.
+Connection Pooling — Reusing database/network connections efficiently.
+HikariCP — High-performance JDBC connection pooling library.
+Caching — Storing frequently accessed data for faster retrieval.
+In-Memory Cache — Cache stored directly in RAM.
+Redis Cache — Distributed in-memory caching datastore.
+EhCache — Java-based caching framework.
+Lazy Loading — Loads data only when required.
+Eager Loading — Loads related data immediately.
+Pagination — Fetching large data in smaller chunks.
+Batch Processing — Processing multiple records together efficiently.
+Batch Insert — Inserting multiple DB records in single operation.
+Indexing — Improving query speed using indexes.
+Composite Index — Index created on multiple columns.
+Covering Index — Index containing all required query columns.
+Query Optimization — Improving database query execution efficiency.
+Execution Plan — Database strategy used to execute query.
+N+1 Query Problem — Excessive DB queries caused by repeated fetching.
+Denormalization — Adding redundancy to improve read performance.
+Horizontal Scaling — Adding more servers to distribute load.
+Vertical Scaling — Increasing server CPU/RAM resources.
+Load Balancing — Distributing requests across multiple servers.
+Asynchronous Processing — Executing tasks without blocking main thread.
+Multithreading — Running multiple threads concurrently.
+Parallel Processing — Executing tasks simultaneously on multiple cores.
+Thread Pooling — Reusing worker threads instead of creating repeatedly.
+Lock Contention — Multiple threads competing for same lock.
+Deadlock — Threads waiting indefinitely for each other’s locks.
+Thread Safety — Correct behavior under concurrent execution.
+Immutable Object — Object whose state cannot change after creation.
+Serialization Cost — Performance overhead during object conversion.
+Compression — Reducing data size for faster transfer/storage.
+CDN — Delivers static content from geographically nearest servers.
+Rate Limiting — Restricting request frequency to protect system.
+Backpressure — Slowing incoming requests during overload.
+Circuit Breaker — Stops repeated failing service calls temporarily.
+Bulkhead Pattern — Isolates failures between components/resources.
+Debouncing — Delays repeated event execution until idle period.
+Throttling — Limits execution frequency of repeated events.
+Streaming — Processing data continuously instead of loading entirely.
+Memory Optimization — Reducing unnecessary memory consumption.
+Hotspot — Frequently executed code area targeted for optimization.
+Cold Start — Initial startup delay before application becomes responsive.
+Warmup Phase — JVM optimization period before peak performance achieved.
+Benchmarking — Measuring system/application performance scientifically.
+Load Testing — Evaluating behavior under heavy traffic/load.
+Stress Testing — Testing beyond expected load capacity.
+Concurrency — Managing multiple tasks simultaneously.
+Parallelism — Executing multiple tasks literally at same time.
+Sharding — Splitting database across multiple servers.
+Replication — Maintaining copies of data across servers.
+Event-Driven Architecture — Systems communicating using asynchronous events.
+Kafka — High-throughput distributed event streaming platform.
+Reactive Programming — Asynchronous non-blocking programming model.
+WebFlux — Spring reactive framework for non-blocking APIs.
+Non-Blocking IO — IO operations not blocking executing thread.
+Blocking IO — Thread waits until IO operation completes.
+
+
+Java Commonly Asked Java One-Liner Interview Answers
+============================================================
+Java — Object-oriented, platform-independent programming language.
+JDK — Java Development Kit containing tools for Java development.
+JRE — Java Runtime Environment used to run Java applications.
+JVM — Java Virtual Machine executing Java bytecode.
+Bytecode — Platform-independent code generated by Java compiler.
+Platform Independence — Java code runs on any OS using JVM.
+WORA — “Write Once Run Anywhere” principle of Java.
+OOPS — Programming paradigm based on objects and classes.
+Class — Blueprint/template for creating objects.
+Object — Instance of a class containing state and behavior.
+Encapsulation — Wrapping data and methods together.
+Abstraction — Hiding implementation details and exposing essentials only.
+Inheritance — Acquiring properties and behaviors from parent class.
+Polymorphism — Same method behaving differently in different contexts.
+Method Overloading — Same method name with different parameters.
+Method Overriding — Child class redefining parent class method.
+Constructor — Special method initializing objects.
+Default Constructor — Constructor automatically added by compiler if absent.
+Parameterized Constructor — Constructor accepting arguments.
+this Keyword — Refers to current object instance.
+super Keyword — Refers to parent class members.
+Static Keyword — Belongs to class rather than object.
+final Keyword — Prevents modification, inheritance, or overriding.
+finally Block — Executes regardless of exception occurrence.
+finalize() — Old GC cleanup method called before object destruction.
+Access Modifier — Controls visibility/accessibility of classes and members.
+public — Accessible everywhere.
+private — Accessible only within same class.
+protected — Accessible within package and subclasses.
+default Access — Accessible only within same package.
+Interface — Blueprint containing abstract methods and constants.
+Abstract Class — Incomplete class containing abstract/concrete methods.
+Marker Interface — Empty interface providing metadata to JVM/frameworks.
+Serializable — Marker interface enabling object serialization.
+Serialization — Converting object into byte stream.
+Deserialization — Converting byte stream back into object.
+transient Keyword — Prevents field serialization.
+volatile Keyword — Ensures variable visibility across threads.
+enum — Special datatype representing fixed constants.
+Package — Namespace organizing related classes/interfaces.
+Import Statement — Allows usage of external packages/classes.
+Exception — Event disrupting normal program flow.
+Checked Exception — Compiler-enforced exception handling.
+Unchecked Exception — Runtime exceptions not checked at compile time.
+try-catch — Handles exceptions gracefully.
+throw — Explicitly throws exception manually.
+throws — Declares possible exceptions from method.
+Custom Exception — User-defined exception class.
+Memory Leak — Unused objects occupying memory unnecessarily.
+Garbage Collection — Automatic cleanup of unused objects.
+Heap Memory — Stores objects and instance variables.
+Stack Memory — Stores method calls and local variables.
+String — Immutable sequence of characters.
+String Pool — Special heap area storing reusable string literals.
+StringBuilder — Mutable string class optimized for performance.
+StringBuffer — Thread-safe mutable string class.
+Immutable Object — Object whose state cannot change after creation.
+== Operator — Compares object references.
+equals() — Compares object contents logically.
+hashCode() — Generates integer hash representation of object.
+Comparable — Interface for natural sorting using compareTo().
+Comparator — Interface for custom sorting logic.
+Collection Framework — Set of classes/interfaces for data handling.
+List — Ordered collection allowing duplicates.
+Set — Collection storing unique elements only.
+Map — Key-value pair collection.
+ArrayList — Dynamic array implementation with fast random access.
+LinkedList — Doubly linked list implementation optimized for insertion/deletion.
+Vector — Thread-safe dynamic array.
+HashSet — Unordered collection storing unique elements.
+TreeSet — Sorted set implementation using tree structure.
+HashMap — Key-value collection using hashing.
+LinkedHashMap — Maintains insertion order in map.
+TreeMap — Sorted map implementation using Red-Black Tree.
+Hashtable — Synchronized thread-safe HashMap.
+ConcurrentHashMap — High-performance thread-safe HashMap.
+Iterator — Used for traversing collections sequentially.
+Fail-Fast Iterator — Throws exception if collection modified during iteration.
+Fail-Safe Iterator — Works on collection copy avoiding exceptions.
+Multithreading — Executing multiple threads concurrently.
+Thread — Smallest independent execution unit.
+Runnable — Interface defining task for thread execution.
+Synchronization — Controlling shared resource access between threads.
+Deadlock — Threads waiting indefinitely for each other’s locks.
+ExecutorService — Framework managing thread pools efficiently.
+Lambda Expression — Concise anonymous function introduced in Java 8.
+Functional Interface — Interface containing single abstract method.
+Stream API — Functional-style collection processing framework.
+Optional — Container preventing NullPointerException.
+Reflection API — Inspects/modifies classes and methods dynamically.
+Annotation — Metadata added to Java code.
+JDBC — API for Java database connectivity.
+Connection Pooling — Reusing database connections efficiently.
+JIT Compiler — Converts bytecode into optimized machine code.
+ClassLoader — Dynamically loads Java classes into JVM memory.
+Singleton Pattern — Ensures only one object instance exists.
+Factory Pattern — Creates objects without exposing creation logic.
+Dependency Injection — Dependencies provided externally to objects.
+SOLID Principles — Five principles for maintainable object-oriented design.
