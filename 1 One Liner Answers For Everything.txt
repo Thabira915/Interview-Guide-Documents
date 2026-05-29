@@ -1475,3 +1475,8 @@ Singleton Pattern — Ensures only one object instance exists.
 Factory Pattern — Creates objects without exposing creation logic.
 Dependency Injection — Dependencies provided externally to objects.
 SOLID Principles — Five principles for maintainable object-oriented design.
+S — Single Responsibility Principle — A class should have only one reason to change.
+O — Open Closed Principle — Open for extension but closed for modification.
+L — Liskov Substitution Principle — Child classes should replace parent classes without breaking behavior.
+I — Interface Segregation Principle — Clients should not depend on unused methods.
+D — Dependency Inversion Principle — Depend on abstractions, not concrete implementations.
