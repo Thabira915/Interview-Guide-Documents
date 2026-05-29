@@ -857,19 +857,19 @@ Functional Component — React component written using JavaScript function.
 Class Component — Older React component syntax using ES6 classes.
 JSX — HTML-like syntax used inside JavaScript in React.
 Props — Read-only data passed from parent to child component.
-State — Internal mutable data managed inside component.
+State — Mutable data local to a component that, when updated, triggers a re-render of the component.
 useState — Hook used to manage state in functional components.
 useEffect — Hook used for side effects like API calls and subscriptions.
-Dependency Array — Controls when useEffect executes.
-useRef — Hook used to persist mutable values without re-rendering.
-useMemo — Memoizes computed values for performance optimization.
-useCallback — Memoizes functions to avoid unnecessary re-creations.
+Dependency Array — The second argument to useEffect that controls when the effect runs; empty array = run once, filled = run on change.
+useRef — Hook that returns a mutable ref object persisting across renders without causing re-renders when changed.
+useMemo — Hook that memoizes an expensive computed value, recomputing it only when specified dependencies change.
+useCallback — Hook that memoizes a function reference, preventing it from being recreated on every render.
 useContext — Accesses shared global data without prop drilling.
-Context API — State-sharing mechanism across components.
+Context API — React mechanism for sharing state globally across the component tree without passing props at every level.
 Prop Drilling — Passing props through multiple nested components unnecessarily.
 Virtual DOM — Lightweight copy of real DOM used for efficient updates.
 Reconciliation — React process comparing Virtual DOM changes efficiently.
-Key Prop — Unique identifier helping React optimize list rendering.
+Key Prop — A unique identifier on list items that helps React efficiently identify which items changed, were added, or removed.
 Conditional Rendering — Rendering UI based on conditions.
 Controlled Component — Form element controlled by React state.
 Uncontrolled Component — Form element managed using DOM refs directly.
@@ -879,19 +879,19 @@ React Router — Library used for client-side routing in React apps.
 Route — Defines component mapping for specific URL path.
 BrowserRouter — Enables browser history-based routing.
 Link — Navigates between routes without page refresh.
-Navigate — Programmatic route redirection component.
+Navigate — React Router component used for programmatic or declarative redirection to another route.
 useNavigate — Hook for navigation programmatically.
-Redux — State management library for large React applications.
+Redux — A predictable state management library for JavaScript apps that maintains a single global store.
 Store — Centralized state container in Redux.
 Action — Object describing state change intention.
 Reducer — Pure function updating Redux state.
 Dispatch — Sends actions to Redux store.
-Middleware — Intercepts Redux actions for async/logging operations.
+Middleware — Functions that sit between dispatching an action and the reducer, used for logging, async calls, etc.
 Redux Thunk — Middleware handling asynchronous Redux actions.
 Redux Toolkit — Simplified modern Redux development approach.
-React Query — Library for server-state fetching and caching.
-Custom Hook — Reusable logic extracted into separate function.
-Higher Order Component (HOC) — Function enhancing existing component behavior.
+React Query — Library for managing server-state (fetching, caching, syncing, updating) in React applications.
+Custom Hook — A JavaScript function whose name starts with "use" that encapsulates and reuses stateful logic across components.
+Higher Order Component (HOC) — A function that takes a component and returns a new enhanced component with additional behavior.
 Render Props — Sharing logic using function props.
 Pure Component — Component avoiding unnecessary re-renders using shallow comparison.
 React.memo — Prevents re-rendering when props do not change.
@@ -928,6 +928,100 @@ Memoization — Caching results to improve performance.
 Debouncing — Delaying rapid event execution like search input.
 Throttling — Limiting function execution frequency during events.
 Profiler — React tool for measuring rendering performance.
+
+SQL
+=================
+Structured Query Language used for managing relational databases.
+Database — Organized collection of related data.
+Table — Collection of rows and columns storing data.
+Row — Single record in a table.
+Column — Attribute/field in a table.
+Primary Key — Unique identifier for each table record.
+Foreign Key — Column creating relationship between tables.
+Composite Key — Primary key consisting of multiple columns.
+Candidate Key — Column eligible to become primary key.
+Unique Key — Ensures column values are unique.
+Super Key — Set of columns uniquely identifying records.
+Constraint — Rule enforcing data integrity in database.
+NOT NULL — Prevents column from storing null values.
+Default Constraint — Provides default value if none supplied.
+Check Constraint — Restricts column values based on condition.
+Index — Data structure improving query performance.
+Clustered Index — Physically sorts table data based on index key.
+Non-Clustered Index — Separate structure storing indexed column references.
+Composite Index — Index created on multiple columns.
+Covering Index — Index containing all columns needed by query.
+Normalization — Organizing data to reduce redundancy.
+Denormalization — Adding redundancy to improve performance.
+1NF — Eliminates repeating groups and ensures atomic columns.
+2NF — Removes partial dependency from composite keys.
+3NF — Removes transitive dependency between columns.
+BCNF — Stronger version of 3NF handling candidate key anomalies.
+SELECT — Retrieves data from database tables.
+WHERE — Filters rows based on condition.
+GROUP BY — Groups rows sharing same values.
+HAVING — Filters grouped records after aggregation.
+ORDER BY — Sorts query results ascending or descending.
+DISTINCT — Removes duplicate rows from result set.
+LIMIT — Restricts number of returned rows.
+OFFSET — Skips specified number of rows.
+JOIN — Combines rows from multiple tables.
+INNER JOIN — Returns matching rows from both tables.
+LEFT JOIN — Returns all left table rows and matching right rows.
+RIGHT JOIN — Returns all right table rows and matching left rows.
+FULL OUTER JOIN — Returns matching and non-matching rows from both tables.
+CROSS JOIN — Produces Cartesian product of tables.
+SELF JOIN — Table joined with itself.
+UNION — Combines results removing duplicates.
+UNION ALL — Combines results including duplicates.
+Subquery — Query nested inside another query.
+Correlated Subquery — Subquery dependent on outer query execution.
+View — Virtual table based on query result.
+Materialized View — Physically stored query result for faster access.
+Stored Procedure — Precompiled SQL block reusable multiple times.
+Function — Reusable SQL logic returning value.
+Trigger — Automatically executes on table events like insert/update/delete.
+Cursor — Processes query result row by row.
+Transaction — Group of SQL operations executed atomically.
+Commit — Permanently saves transaction changes.
+Rollback — Reverts transaction changes.
+Savepoint — Partial rollback point inside transaction.
+ACID Properties — Atomicity, Consistency, Isolation, Durability in transactions.
+Atomicity — Transaction fully succeeds or fully fails.
+Consistency — Database remains valid before and after transaction.
+Isolation — Transactions execute independently without interference.
+Durability — Committed data persists permanently.
+Deadlock — Transactions waiting indefinitely for each other’s locks.
+Locking — Restricting simultaneous data access for consistency.
+Shared Lock — Allows read-only access to data.
+Exclusive Lock — Prevents others from reading/writing data.
+Optimistic Locking — Assumes conflicts are rare and validates before commit.
+Pessimistic Locking — Locks data immediately to prevent conflicts.
+Dirty Read — Reading uncommitted transaction data.
+Non-Repeatable Read — Same query returning different results within transaction.
+Phantom Read — New rows appearing during same transaction execution.
+Isolation Level — Defines transaction visibility rules.
+Read Uncommitted — Lowest isolation allowing dirty reads.
+Read Committed — Prevents dirty reads only.
+Repeatable Read — Prevents non-repeatable reads.
+Serializable — Highest isolation preventing phantom reads.
+Execution Plan — Database strategy used to execute query.
+EXPLAIN — Displays query execution plan.
+Full Table Scan — Database scans entire table due to missing index.
+Cardinality — Number of unique values in column.
+Partitioning — Splitting large tables into smaller manageable parts.
+Sharding — Distributing database across multiple servers.
+Replication — Copying database data across servers.
+OLTP — Transaction-oriented operational database systems.
+OLAP — Analytical systems optimized for reporting and queries.
+CTE — Temporary named result set inside query.
+Window Function — Performs calculations across related row sets.
+ROW_NUMBER() — Assigns sequential row numbers.
+RANK() — Assigns ranking with gaps for ties.
+DENSE_RANK() — Assigns ranking without gaps.
+LEAD() — Accesses next row value.
+LAG() — Accesses previous row value.
+Database Migration — Managing schema changes across environments.
 
 Git
 =======
