@@ -929,6 +929,101 @@ Debouncing — Delaying rapid event execution like search input.
 Throttling — Limiting function execution frequency during events.
 Profiler — React tool for measuring rendering performance.
 
+HTML 
+===============
+HTML — Standard markup language used to structure web pages.
+Element — Building block of HTML defined using tags.
+Tag — Syntax enclosed in angle brackets defining HTML elements.
+Attribute — Additional information provided inside HTML tags.
+DOCTYPE — Declares HTML document type and version.
+Semantic HTML — Meaningful HTML elements improving readability and SEO.
+div — Generic block-level container element.
+span — Generic inline container element.
+Heading Tags — <h1> to <h6> representing headings hierarchy.
+Paragraph Tag — <p> used for paragraphs/text blocks.
+Anchor Tag — <a> used for hyperlinks/navigation.
+Image Tag — <img> used for displaying images.
+Form — HTML element used for collecting user input.
+Input Tag — <input> used for user data entry.
+Label Tag — Associates label with form input.
+Button Tag — Creates clickable button element.
+Table — Displays tabular data using rows and columns.
+List — Displays ordered or unordered collection of items.
+Iframe — Embeds another webpage/document inside current page.
+Meta Tag — Provides metadata about webpage.
+Viewport Meta Tag — Controls responsive scaling on devices.
+SEO — Optimizing webpage visibility in search engines.
+Accessibility — Making websites usable for all users including disabilities.
+ARIA — Accessibility attributes improving screen-reader support.
+Inline Element — Occupies only required content width.
+Block Element — Occupies full available width.
+Inline-Block Element — Behaves inline while supporting block properties.
+Local Storage — Browser storage persisting after browser close.
+Session Storage — Browser storage cleared after session ends.
+Cookie — Small browser-stored data sent with requests.
+Canvas — HTML element used for drawing graphics dynamically.
+SVG — XML-based scalable vector graphics format.
+Audio Tag — Embeds audio content in webpage.
+Video Tag — Embeds video content in webpage.
+Responsive Design — UI adapting to different screen sizes.
+DOM — Document Object Model representing webpage structure.
+
+CSS
+===========
+CSS — Stylesheet language used to design HTML webpages.
+Selector — Targets HTML elements for styling.
+Class Selector — Targets elements using class attribute.
+ID Selector — Targets unique element using ID.
+Universal Selector — Targets all HTML elements.
+Pseudo Class — Styles element based on state like :hover.
+Pseudo Element — Styles specific part of element like ::before.
+Box Model — Structure consisting of margin, border, padding, and content.
+Margin — Space outside element border.
+Padding — Space between content and border.
+Border — Outline surrounding element.
+Content — Actual text/image inside element.
+Display Property — Defines element rendering behavior.
+display:block — Element occupies full width.
+display:inline — Element occupies only content width.
+display:flex — Enables Flexbox layout system.
+display:grid — Enables CSS Grid layout system.
+Flexbox — One-dimensional layout system for alignment/distribution.
+CSS Grid — Two-dimensional layout system using rows and columns.
+Position Property — Defines element positioning behavior.
+Static Position — Default normal document positioning.
+Relative Position — Positioned relative to normal location.
+Absolute Position — Positioned relative to nearest positioned ancestor.
+Fixed Position — Positioned relative to browser viewport.
+Sticky Position — Switches between relative and fixed based on scrolling.
+z-index — Controls stacking order of elements.
+Media Query — Applies styles based on device/screen conditions.
+Responsive Web Design — Adapting UI for multiple devices/screens.
+Viewport — Visible webpage area in browser/device.
+Specificity — Rule deciding which CSS style gets applied.
+Inheritance — Child elements inheriting parent styles automatically.
+!important — Forces CSS rule priority override.
+Transition — Smooth property change effect over time.
+Animation — Complex visual movement/effects using keyframes.
+Transform — Rotates, scales, skews, or moves elements visually.
+Opacity — Controls element transparency.
+Overflow — Defines handling of extra overflowing content.
+Visibility:hidden — Hides element while keeping layout space.
+display:none — Removes element completely from layout.
+Float — Positions elements left or right.
+Clear — Prevents floating element overlap.
+CSS Variables — Reusable custom CSS property values.
+Rem Unit — Relative unit based on root font size.
+Em Unit — Relative unit based on parent font size.
+Viewport Units — Relative sizing based on viewport dimensions (vw, vh).
+Bootstrap — Popular CSS framework for responsive UI development.
+Tailwind CSS — Utility-first CSS framework for rapid styling.
+Preprocessor — CSS extension language like SCSS/SASS.
+SCSS/SASS — CSS preprocessor adding variables, nesting, and functions.
+BEM Methodology — CSS naming convention improving maintainability.
+CSS Reset — Removes default browser styling inconsistencies.
+Normalize CSS — Standardizes browser default styles consistently.
+Shadow DOM — Encapsulated DOM/CSS used in web components.
+
 SQL
 =================
 Structured Query Language used for managing relational databases.
