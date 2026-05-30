@@ -253,7 +253,7 @@ Multithreading
 ===================
 Multithreading — Executing multiple threads concurrently within a process.
 Thread — Smallest independent execution unit inside a process.
-Process — Independent program execution with separate memory space.
+Process — An independent program in execution with its own dedicated memory space, resources, and at least one thread.
 Concurrency — Managing multiple tasks simultaneously.
 Parallelism — Executing multiple tasks literally at the same time.
 Main Thread — Default thread where Java program execution starts.
@@ -334,17 +334,17 @@ Function — Functional interface transforming input into output.
 Consumer — Functional interface accepting input without returning value.
 Supplier — Functional interface supplying values without input.
 Method Reference — Shorter syntax referring existing methods using ::.
-Stream API — Functional-style processing of collections/data sequences.
-Intermediate Operation — Stream operation returning another stream.
-Terminal Operation — Final stream operation producing result/output.
+Stream API — A powerful API for processing sequences of elements in a functional, declarative style with lazy evaluation.
+Intermediate Operation — A Stream operation (e.g., filter, map) that returns a new Stream and is evaluated lazily.
+Terminal Operation — A Stream operation (e.g., collect, forEach) that triggers the pipeline and produces a final result.
 filter() — Selects elements matching condition.
-map() — Transforms elements into another form.
-flatMap() — Flattens nested structures into single stream.
-reduce() — Combines stream elements into single result.
-collect() — Converts stream into collection or custom result.
+map() — Intermediate operation that transforms each element into another form using a provided Function.
+flatMap() — Intermediate operation that flattens a stream of streams (or collections) into a single stream.
+reduce() — Terminal operation that combines all stream elements into a single result using an accumulator function.
+collect() — Terminal operation that converts stream elements into a collection or other container using a Collector.
 forEach() — Iterates through stream elements.
 distinct() — Removes duplicate elements from stream.
-sorted() — Sorts stream elements.
+sorted() — Intermediate operation that returns a stream with elements sorted in natural or custom order.
 limit() — Restricts number of stream elements.
 skip() — Skips specified number of elements.
 findFirst() — Returns first matching element.
@@ -353,8 +353,8 @@ anyMatch() — Checks if any element matches condition.
 allMatch() — Checks if all elements match condition.
 noneMatch() — Checks if no elements match condition.
 Optional Class — Container avoiding NullPointerException.
-Optional.of() — Creates Optional with non-null value only.
-Optional.ofNullable() — Creates Optional allowing null values.
+Optional.of() — Creates an Optional with a non-null value; throws NullPointerException if the value is null.
+Optional.ofNullable() — Creates an Optional that may hold a null value without throwing an exception.
 Optional.empty() — Creates empty Optional object.
 isPresent() — Checks if Optional contains value.
 orElse() — Returns default value if Optional empty.
@@ -366,31 +366,31 @@ Static Method in Interface — Utility method defined inside interface.
 Date and Time API — Improved immutable date/time handling introduced in Java 8.
 LocalDate — Represents date without time.
 LocalTime — Represents time without date.
-LocalDateTime — Represents date and time together.
-ZonedDateTime — Represents date/time with timezone.
+LocalDateTime — Represents both date and time together without timezone information.
+ZonedDateTime — Represents a full date, time, and timezone, useful for timezone-aware applications.
 Instant — Represents timestamp in UTC.
 Parallel Stream — Processes stream elements concurrently using multiple threads.
 Sequential Stream — Processes elements one by one.
 Collectors — Utility class for collecting stream results.
 groupingBy() — Groups stream elements based on condition/key.
 partitioningBy() — Splits elements into true/false groups.
-joining() — Concatenates stream elements into string.
-counting() — Counts stream elements.
-mapping() — Applies transformation during collection.
-min() — Finds minimum element from stream.
-max() — Finds maximum element from stream.
-sum() — Calculates total of numeric stream.
-Stream Pipeline — Sequence of stream operations executed together.
-Lazy Evaluation — Stream operations execute only during terminal operation.
-Short Circuiting — Stream stops processing once result determined.
+joining() — Collector that concatenates stream elements into a single String with optional delimiter, prefix, and suffix.
+counting() — Collector that counts the number of elements in the stream.
+mapping() — Collector that applies a mapping function before collecting into another collector.
+min() — Terminal operation that returns the minimum element according to a Comparator, wrapped in Optional.
+max() — Terminal operation that returns the maximum element according to a Comparator, wrapped in Optional.
+sum() — Terminal operation on numeric streams (IntStream, LongStream, DoubleStream) that calculates the total of all elements.
+Stream Pipeline — A chain of source, intermediate operations, and a terminal operation executed as a single unit lazily.
+Lazy Evaluation — Intermediate operations in a stream are not executed until a terminal operation is invoked.
+Short Circuiting — A stream optimization where processing stops as soon as the result can be determined (e.g., findFirst, anyMatch).
 Comparator.comparing() — Simplifies object sorting using fields.
 forEachOrdered() — Maintains encounter order during parallel stream processing.
 peek() — Performs action during stream processing mainly for debugging.
 Double Colon Operator (::) — Syntax used for method references.
 Nashorn Engine — JavaScript engine introduced in Java 8.
-CompletableFuture — Asynchronous programming and task chaining support.
+CompletableFuture — Provides a rich API for composing asynchronous computations with methods like thenApply, thenCompose, and exceptionally.
 Base64 Encoder/Decoder — Utility for Base64 encoding and decoding.
-Spliterator — Advanced iterator supporting parallel traversal.
+Spliterator — A special iterator introduced i./.n Java 8 designed to traverse and partition stream elements for parallel processing.
 Type Inference — Compiler automatically determines datatype.
 Effectively Final Variable — Variable whose value does not change after initialization.
 Immutable Date API — Java 8 date/time objects are immutable and thread-safe.
@@ -404,69 +404,165 @@ Spring Boot — Framework used to build production-ready Spring applications qui
 Starter Dependency — Predefined dependency bundle simplifying project setup.
 Auto Configuration — Automatically configures Spring application based on dependencies present.
 Embedded Server — Built-in Tomcat/Jetty server eliminating external deployment need.
-Spring Initializr — Tool for generating Spring Boot project structure quickly.
-application.properties — Configuration file used for application settings.
-application.yml — YAML-based configuration file alternative to properties.
-@SpringBootApplication — Combines configuration, component scan, and auto configuration.
-@RestController — Combines @Controller and @ResponseBody for REST APIs.
-@Controller — Handles web requests and returns views/pages.
-@Service — Marks business logic layer component.
-@Repository — Marks DAO layer and enables DB exception translation.
-@Component — Generic Spring-managed bean annotation.
-@Autowired — Automatically injects dependencies into Spring beans.
-Dependency Injection — Providing dependencies externally instead of creating manually.
-IOC Container — Manages lifecycle and creation of Spring beans.
-Bean — Object managed by Spring container.
-@Bean — Explicitly creates and manages bean inside configuration class.
-@Configuration — Defines Spring configuration class containing bean definitions.
-@Value — Injects property values into variables.
-@Qualifier — Resolves ambiguity when multiple beans of same type exist.
-@Primary — Marks default bean among multiple candidates.
-@RequestMapping — Maps HTTP requests to controller methods.
+Spring Initializr — A web-based tool (start.spring.io) for generating a Spring Boot project with chosen dependencies and structure.
+application.properties — The default configuration file where application settings like port, DB URL, and logging are defined.
+application.yml — YAML-format alternative to application.properties offering cleaner hierarchical configuration syntax.
+@SpringBootApplication — Composite annotation combining @Configuration, @ComponentScan, and @EnableAutoConfiguration on the main class.
+@RestController — Combines @Controller and @ResponseBody, making every method return JSON/XML directly as HTTP response.
+@Controller — Marks a class as a Spring MVC controller that handles web requests and returns view names.
+@Service — Marks a class as a business logic/service layer component managed by the Spring container.
+@Repository — Marks a class as a data access layer component and enables Spring's persistence exception translation.
+@Component — Generic stereotype annotation that marks any class as a Spring-managed bean.
+@Autowired — Instructs Spring to automatically inject the matching dependency by type into the annotated field, constructor, or setter.
+Dependency Injection — A design pattern where an object's dependencies are provided externally by the Spring container rather than created internally.
+IOC Container — The core Spring container that manages the full lifecycle of beans, including creation, wiring, and destruction.
+Bean — Any object that is instantiated, assembled, and managed by the Spring IOC container.
+@Bean — Annotates a method in a @Configuration class to indicate its return value should be registered as a Spring bean.
+@Configuration — Marks a class as a source of bean definitions; equivalent to XML-based Spring configuration.
+@Value — Injects a value from application.properties or environment variables into a field or method parameter.
+@Qualifier — Used alongside @Autowired to specify which bean to inject when multiple candidates of the same type exist.
+@Primary — Marks one bean as the default choice when multiple beans of the same type are available for injection.
+@RequestMapping — Maps HTTP requests to a specific handler class or method based on URL, method, headers, or parameters.
 @GetMapping — Handles HTTP GET requests.
 @PostMapping — Handles HTTP POST requests.
 @PutMapping — Handles HTTP PUT requests.
 @DeleteMapping — Handles HTTP DELETE requests.
-@PathVariable — Extracts value from URL path.
-@RequestParam — Extracts query parameter from request URL.
-@RequestBody — Maps HTTP request body to Java object.
-@ResponseBody — Converts Java object into HTTP response JSON/XML.
-Spring Data JPA — Simplifies database operations using repositories.
-JpaRepository — Provides CRUD and pagination methods automatically.
+@PathVariable — Extracts a dynamic value from a (URL path) URI template variable and binds it to a method parameter.
+@RequestParam — Binds a query string parameter from the request URL to a method parameter.
+@RequestBody — Deserializes the HTTP request body (typically JSON) into a Java object using Jackson.
+@ResponseBody — Serializes the return value of a controller method into the HTTP response body as JSON/XML.
+Spring Data JPA — Abstraction layer on top of JPA/Hibernate that auto-generates common DB operations from repository interfaces.
+JpaRepository — Extends CrudRepository with JPA-specific methods like flush(), saveAndFlush(), and findAll(Pageable).
 Hibernate — ORM framework mapping Java objects to database tables.
-ORM — Technique mapping objects to relational database tables.
-Entity — Java class mapped to database table.
-@Entity — Marks class as JPA entity.
-@Table — Specifies database table mapping.
-@Id — Marks primary key field.
-@GeneratedValue — Automatically generates primary key values.
-@Transactional — Manages database transaction boundaries.
+ORM — Object-Relational Mapping; a technique for converting data between Java objects and relational database tables.
+Entity — A Java class annotated with @Entity that is mapped to a database table by JPA/Hibernate.
+@Entity — Marks a Java class as a JPA entity that will be mapped to a database table.
+@Table — Specifies the name of the database table that the entity class maps to.
+@Id — Marks a field as the primary key of the entity.
+@GeneratedValue — Configures automatic primary key generation strategy (AUTO, IDENTITY, SEQUENCE, TABLE).
+@Transactional — Wraps a method or class in a database transaction; rolls back on unchecked exceptions by default.
 Spring Security — Framework for authentication and authorization.
-JWT — Token-based authentication mechanism for stateless APIs.
-Actuator — Provides monitoring and health endpoints.
-Profile — Environment-specific configuration management.
-@Profile — Activates beans for specific environments.
+JWT — JSON Web Token; a compact, URL-safe token format for stateless authentication, containing header, payload, and signature.
+Actuator — Spring Boot module exposing production-ready endpoints for health checks, metrics, environment info, and more.
+Profile — A mechanism for defining environment-specific bean configurations (e.g., dev, test, prod).
+@Profile — Activates a bean or configuration class only when the specified profile is active.
 Exception Handling — Managing application errors gracefully.
-@ControllerAdvice — Global exception handling across controllers.
-@ExceptionHandler — Handles specific exceptions.
-Pagination — Fetching data in smaller chunks/pages.
-Caching — Temporarily storing frequently used data for performance improvement.
-@Cacheable — Enables caching for method results.
-Spring Batch — Framework for batch processing large datasets.
-Spring Scheduler — Executes tasks at scheduled intervals.
-@Scheduled — Schedules method execution periodically.
-Spring Cloud — Tools for building distributed microservices systems.
-Feign Client — Declarative REST client for service communication.
-Eureka — Service registry for microservices discovery.
-Config Server — Centralized external configuration management.
-Circuit Breaker — Prevents cascading failures in distributed systems.
-Resilience4j — Fault tolerance library for retry and circuit breaker.
-Swagger/OpenAPI — API documentation and testing framework.
-Lombok — Reduces boilerplate code using annotations.
-DevTools — Enables automatic restart and live reload during development.
-CommandLineRunner — Executes code after Spring Boot application startup.
-WAR Packaging — Deployment format for external servers.
-JAR Packaging — Self-contained executable application package.
+@ControllerAdvice — Enables centralized exception handling across all controllers in a Spring application.
+@ExceptionHandler — Defines a method to handle a specific exception type and return a custom response.
+Pagination — Technique for returning data in pages using Pageable and Page objects to avoid loading large datasets at once.
+Caching — Storing frequently accessed method results temporarily to reduce redundant DB queries and improve performance.
+@Cacheable — Caches the result of a method call; subsequent calls with the same arguments return the cached result.
+Spring Batch — Framework for processing large volumes of records in batch jobs with built-in retry, skip, and restart support.
+Spring Scheduler — Built-in scheduling support for running methods at fixed intervals or cron expressions.
+@Scheduled — Triggers a method execution at a fixed rate, fixed delay, or cron expression without external scheduling tools.
+Spring Cloud — Umbrella project providing tools for distributed system patterns like config management, service discovery, and circuit breaking.
+Feign Client — Declarative REST client that generates HTTP client code from an annotated interface, simplifying service-to-service calls.
+Eureka — Netflix service registry integrated with Spring Cloud for microservice registration and discovery.
+Config Server — Spring Cloud component that serves externalized configuration from a central Git repository to all microservices.
+Circuit Breaker — Pattern implemented via Resilience4j or Hystrix to stop calling failing services and return fallback responses.
+Resilience4j — Lightweight fault-tolerance library providing circuit breaker, retry, rate limiter, and time limiter for Spring Boot.
+Swagger/OpenAPI — Integration that auto-generates interactive API documentation from controller annotations at runtime.
+Lombok — Java library that auto-generates boilerplate code like getters, setters, constructors, and builders via annotations.
+DevTools — Spring Boot module that enables automatic application restart and LiveReload on classpath changes during development.
+CommandLineRunner — Functional interface whose run() method is called once the Spring Boot application context is fully started.
+WAR Packaging — Packaging format used when deploying a Spring Boot app to an external servlet container like Tomcat.
+JAR Packaging — Default Spring Boot packaging format that bundles the app and embedded server into a single executable JAR.
+
+
+Spring Security
+=====================
+SecurityFilterChain — The primary Spring Security 6+ configuration bean that defines the HTTP security rules, replacing the deprecated WebSecurityConfigurerAdapter.
+WebSecurityConfigurerAdapter — The older (deprecated since Spring Security 5.7) base class overridden to customize HTTP security, authentication, and authorization rules.
+HttpSecurity — A builder API used inside SecurityFilterChain to configure URL access rules, login/logout, CSRF, CORS, session management, and filter chains.
+Filter Chain — A sequence of security filters (e.g., UsernamePasswordAuthenticationFilter, JwtFilter) that every HTTP request passes through before reaching the controller.
+OncePerRequestFilter — A base class for writing a custom security filter that guarantees it executes exactly once per HTTP request, commonly used for JWT validation.
+UsernamePasswordAuthenticationFilter — A built-in Spring Security filter that intercepts login requests, extracts credentials, and delegates to the AuthenticationManager.
+AuthenticationManager — The core interface responsible for processing an Authentication object and returning a fully authenticated object or throwing an exception.
+AuthenticationProvider — A strategy interface that performs a specific authentication mechanism (e.g., DaoAuthenticationProvider for username/password).
+DaoAuthenticationProvider — The default AuthenticationProvider that loads user details from a UserDetailsService and validates the password using a PasswordEncoder.
+UserDetailsService — A core interface with a single method loadUserByUsername() that fetches user data from a data source for authentication.
+UserDetails — An interface representing a user with fields for username, password, authorities, and account status flags used by Spring Security.
+UserDetailsImpl — A common custom implementation of UserDetails that maps application User entity fields to the Spring Security user model.
+GrantedAuthority — An interface representing a permission or role (e.g., ROLE_ADMIN, ROLE_USER) granted to an authenticated user.
+SecurityContext — A holder for the current user's authentication details (Authentication object) that is accessible throughout the request lifecycle.
+SecurityContextHolder — A static class that stores and provides access to the SecurityContext; default strategy is thread-local storage per request.
+Authentication Object — An interface holding the principal (user), credentials (password), and granted authorities of the currently authenticated user.
+Principal — The identity of the currently authenticated user, typically the UserDetails object or username string stored in the Authentication object.
+PasswordEncoder — An interface for encoding and verifying passwords; BCryptPasswordEncoder is the recommended implementation for secure hashing.
+BCryptPasswordEncoder — Spring Security's recommended password encoder that uses the BCrypt adaptive hashing algorithm with salt, making brute-force attacks computationally expensive.
+JWT Header — The first part of a JWT token encoded in Base64, containing the algorithm (e.g., HS256) and token type.
+JWT Payload (Claims) — The second part of a JWT token containing the claims: subject (username), issued-at, expiration, roles, and any custom data.
+JWT Signature — The third part of a JWT token created by signing the encoded header and payload with a secret key to verify integrity.
+JWT Secret Key — A private key (or secret string) used to sign and verify JWT tokens; must be kept confidential and rotated periodically.
+JWT Expiration — A claim (exp) in the JWT payload defining the timestamp after which the token is no longer valid and must be rejected.
+Refresh Token — A long-lived token issued alongside the access JWT, used to obtain a new access token after it expires without re-authenticating.
+Access Token — A short-lived JWT sent with every API request in the Authorization header to prove the user's identity and permissions.
+Bearer Token — An authentication scheme where the client sends the JWT in the HTTP header as `Authorization: Bearer <token>`.
+Stateless Authentication — An approach where no session is stored on the server; every request is self-authenticated using the JWT it carries.
+OAuth2 — An open authorization framework that allows third-party applications to obtain limited access to a user's account without exposing credentials.
+OAuth2 Resource Server — A Spring Security configuration that validates incoming JWT Bearer tokens and protects API endpoints from unauthorized access.
+OAuth2 Authorization Server — The server responsible for authenticating users and issuing access tokens, refresh tokens, and authorization codes.
+OAuth2 Client — An application that requests access to a protected resource on behalf of a user using tokens obtained from the authorization server.
+Authorization Code Flow — The most secure OAuth2 flow where the client receives an authorization code via redirect and exchanges it for tokens server-side.
+Client Credentials Flow — An OAuth2 flow for machine-to-machine communication where the client authenticates using its own ID and secret, not a user.
+Implicit Flow — A deprecated OAuth2 flow where tokens were returned directly in the URL fragment; replaced by Authorization Code with PKCE.
+PKCE (Proof Key for Code Exchange) — An OAuth2 extension that prevents authorization code interception attacks in public clients like SPAs and mobile apps.
+OpenID Connect (OIDC) — An identity layer on top of OAuth2 that returns an ID token (JWT) with user profile information alongside the access token.
+ID Token — A JWT issued by an OIDC provider containing identity claims (name, email, sub) about the authenticated user.
+Scope — A parameter in OAuth2 that defines the level of access requested by the client (e.g., read, write, openid, email, profile).
+Keycloak — An open-source identity and access management server that provides OAuth2, OIDC, SAML, SSO, and user federation out of the box.
+Spring OAuth2 Login — A Spring Security feature that enables social or enterprise login via OAuth2/OIDC providers like Google, GitHub, or Okta.
+CSRF Token — A unique, unpredictable token included in every state-changing request to verify it originated from the legitimate application, preventing CSRF attacks.
+CSRF Protection — Spring Security enables CSRF protection by default for web apps; it should be disabled for stateless REST APIs using JWT.
+CORS Configuration — Spring Security's CORS support that must be configured to allow cross-origin requests from frontend apps before security filters run.
+@EnableWebSecurity — Annotation that enables Spring Security's web security support and allows customization via a SecurityFilterChain bean.
+@EnableMethodSecurity — Annotation (replaced @EnableGlobalMethodSecurity) that enables method-level security annotations like @PreAuthorize and @PostAuthorize.
+@PreAuthorize — A method-level annotation that evaluates a Spring Expression Language (SpEL) expression before the method is invoked to control access.
+@PostAuthorize — A method-level annotation that evaluates a SpEL expression after the method returns, allowing access control based on the return value.
+@Secured — A simpler method-level annotation that restricts access based on a list of role names (e.g., @Secured("ROLE_ADMIN")).
+@RolesAllowed — A JSR-250 annotation equivalent to @Secured for restricting method access by role, supported via @EnableMethodSecurity.
+Role — A coarse-grained permission label prefixed with ROLE_ (e.g., ROLE_ADMIN, ROLE_USER) assigned to a user to control broad access.
+Permission (Authority) — A fine-grained privilege string (e.g., user:read, order:delete) assigned to a user for precise access control beyond roles.
+hasRole() — A SpEL method in @PreAuthorize that checks whether the current user has a specific role (automatically adds ROLE_ prefix).
+hasAuthority() — A SpEL method in @PreAuthorize that checks whether the current user has a specific authority or permission string exactly as given.
+hasAnyRole() — A SpEL method that returns true if the current user has at least one of the specified roles.
+isAuthenticated() — A SpEL expression that returns true if the current user is authenticated (not anonymous).
+isAnonymous() — A SpEL expression that returns true if the current user has not been authenticated.
+permitAll() — A security rule that allows all users including unauthenticated ones to access the specified endpoint.
+denyAll() — A security rule that blocks all users including authenticated ones from accessing the specified endpoint.
+antMatchers() / requestMatchers() — Methods used in HttpSecurity to match URL patterns and apply authorization rules (antMatchers deprecated in Spring Security 6, replaced by requestMatchers).
+Session Management — Spring Security's ability to control session creation strategy: ALWAYS, IF_REQUIRED, NEVER, or STATELESS for JWT-based APIs.
+SessionCreationPolicy.STATELESS — Configures Spring Security to never create or use an HTTP session, required for stateless JWT-based REST APIs.
+Remember Me — A Spring Security feature that persists authentication across browser sessions using a persistent token stored in a cookie and database.
+Logout — Spring Security's built-in logout support that invalidates the session, clears the SecurityContext, and optionally deletes cookies on logout.
+Basic Authentication — An HTTP authentication scheme where the username and password are base64-encoded and sent in the Authorization header with every request.
+Form Login — Spring Security's built-in form-based login support that processes a POST to /login with username and password parameters.
+ExceptionTranslationFilter — A Spring Security filter that handles AuthenticationException (triggers login) and AccessDeniedException (triggers 403 response).
+AuthenticationEntryPoint — An interface invoked when an unauthenticated user attempts to access a protected resource; returns a 401 Unauthorized response.
+AccessDeniedHandler — An interface invoked when an authenticated user lacks permission to access a resource; returns a 403 Forbidden response.
+MethodSecurityExpressionHandler — The component that evaluates SpEL expressions in @PreAuthorize and @PostAuthorize annotations for method-level security.
+InMemoryUserDetailsManager — A UserDetailsService implementation that stores user details in memory; suitable for testing and development only.
+JdbcUserDetailsManager — A UserDetailsService implementation that loads user credentials and authorities from a relational database via JDBC.
+SecurityMatcher — Restricts a SecurityFilterChain to apply only to requests matching a specific URL pattern, allowing multiple filter chains for different API areas.
+Multiple Security Filter Chains — A Spring Security pattern where different filter chains (e.g., one for /api/, one for /admin/) apply different rules to different URL groups.
+Content Security Policy (CSP) — An HTTP security header configurable in Spring Security that restricts which sources of content (scripts, styles) the browser can load.
+HSTS (HTTP Strict Transport Security) — A security header Spring Security adds by default to force browsers to always use HTTPS for future requests to the domain.
+X-Frame-Options — A security header Spring Security sets by default to prevent clickjacking by controlling whether the page can be embedded in an iframe.
+X-Content-Type-Options — A security header that prevents browsers from MIME-sniffing a response away from the declared Content-Type, set by Spring Security by default.
+Security Headers — A set of HTTP response headers (CSP, HSTS, X-Frame-Options, etc.) automatically added by Spring Security to protect against common web attacks.
+IP-Based Access Control — Spring Security's ability to restrict endpoint access based on the client's IP address using hasIpAddress() in SpEL expressions.
+Two-Factor Authentication (2FA) — An additional security layer requiring a second verification step (e.g., OTP) after password validation, implementable as a custom filter.
+LDAP Authentication — Spring Security's support for authenticating users against an LDAP directory server, common in enterprise environments.
+SAML — Security Assertion Markup Language; an XML-based SSO protocol supported via Spring Security SAML for enterprise identity federation.
+SSO (Single Sign-On) — A session/authentication scheme that allows a user to log in once and access multiple applications without re-authenticating.
+Delegating Password Encoder — Spring Security's DelegatingPasswordEncoder stores the encoding algorithm ID with the hash (e.g., {bcrypt}$2a$...) allowing multiple encoders simultaneously for migration.
+Password Migration — Spring Security supports upgrading legacy password hashes (MD5, SHA) to BCrypt transparently at login time using DelegatingPasswordEncoder.
+Method Security — The ability to secure individual service or repository methods using annotations (@PreAuthorize, @Secured) rather than only URL patterns.
+Global Method Security — Application-wide activation of method-level security, enabled via @EnableMethodSecurity so annotations are enforced across all beans.
+Anonymous Authentication — Spring Security creates an anonymous Authentication object for unauthenticated users so filters and expressions can handle them consistently.
+RunAs Authentication — A Spring Security mechanism that temporarily replaces a user's Authentication with a different one during a method call for privilege escalation scenarios.
+Security Event Publishing — Spring Security publishes events (AuthenticationSuccessEvent, AuthenticationFailureEvent, etc.) to the ApplicationContext for logging and auditing.
+Audit Logging — Capturing and storing authentication and authorization events (login success/failure, access denied) for compliance and security monitoring.
 
 Spring Data JPA
 =================
@@ -607,84 +703,84 @@ Test Pyramid — Strategy emphasizing more unit tests than UI tests.
 Spring
 ===========
 Spring Framework — Lightweight Java framework used for enterprise application development.
-IOC (Inversion of Control) — Spring controls object creation and dependency management.
+IOC (Inversion of Control) — Design principle where the framework controls object creation and lifecycle instead of the developer.
 Dependency Injection (DI) — Injecting dependencies externally instead of creating manually.
-Bean — Object managed by Spring container.
-ApplicationContext — Advanced Spring IOC container managing beans and configurations.
-BeanFactory — Basic IOC container for managing Spring beans.
-Spring Container — Core component managing bean lifecycle and dependency injection.
-@Component — Generic annotation marking Spring-managed bean.
-@Service — Marks business logic layer bean.
-@Repository — Marks persistence/DAO layer bean.
-@Controller — Handles web requests in MVC architecture.
-@RestController — Specialized controller returning REST API responses.
-@Autowired — Automatically injects dependencies into beans.
-Constructor Injection — Dependency injection using constructor parameters.
-Setter Injection — Dependency injection using setter methods.
-Field Injection — Dependency injection directly on fields.
-Loose Coupling — Components depend on abstractions instead of concrete implementations.
-Tight Coupling — Components directly depend on each other strongly.
+Bean — An object created and managed by the Spring IoC container, configured via annotations or XML.
+ApplicationContext — Advanced Spring IoC container that extends BeanFactory with event publishing, internationalization, and AOP support.
+BeanFactory — The simplest Spring IoC container providing basic bean creation and dependency injection without advanced features.
+Spring Container — The runtime environment that instantiates, configures, wires, and manages the lifecycle of Spring beans.
+@Component — Generic stereotype annotation marking a class as a Spring-managed component eligible for auto-detection.
+@Service — Specialization of @Component used to annotate business logic classes, aiding in readability and layering.
+@Repository — Specialization of @Component for DAO classes; also enables automatic Spring data access exception translation.
+@Controller — Specialization of @Component for Spring MVC controllers that handle incoming web requests.
+@RestController — Combination of @Controller and @ResponseBody; all methods return data directly as HTTP response body.
+@Autowired — Instructs Spring to automatically resolve and inject a bean dependency by matching type.
+Constructor Injection — Preferred injection style where dependencies are provided through the constructor, enabling immutability.
+Setter Injection — Optional injection style where dependencies are injected via public setter methods after object construction.
+Field Injection — Injects dependencies directly into fields using @Autowired, though discouraged for production code.
+Loose Coupling — Design where components depend on abstractions (interfaces) rather than concrete classes, easing replacement.
+Tight Coupling — Design where components are directly dependent on concrete implementations, making changes difficult.
 @Qualifier — Resolves bean ambiguity when multiple beans exist.
-@Primary — Marks default bean among multiple candidates.
-@Bean — Explicitly defines Spring-managed bean in configuration class.
-@Configuration — Class containing bean definitions and Spring configuration.
-Singleton Scope — Single bean instance shared across application.
-Prototype Scope — New bean instance created every request.
-Request Scope — Bean created once per HTTP request.
-Session Scope — Bean created once per HTTP session.
-Bean Lifecycle — Process of bean creation, initialization, and destruction.
-InitializingBean — Interface for bean initialization callback.
-DisposableBean — Interface for bean destruction callback.
-Spring AOP — Aspect-Oriented Programming support in Spring.
-Aspect — Cross-cutting concern like logging/security.
-Advice — Action executed during specific join point.
-Join Point — Point during program execution where aspect applies.
-Pointcut — Expression selecting join points.
-Before Advice — Executes before method execution.
-After Advice — Executes after method execution.
-Around Advice — Executes before and after method execution.
+@Primary — Marks one bean as the preferred default when multiple beans of the same type exist in the context.
+@Bean — Method-level annotation in a @Configuration class telling Spring to manage the returned object as a bean.
+@Configuration — Class-level annotation declaring that the class contains Spring bean definitions.
+Singleton Scope — Default Spring bean scope; only one instance of the bean is created and shared across the entire application.
+Prototype Scope — A new bean instance is created every time the bean is requested from the Spring container.
+Request Scope — A new bean instance is created for every HTTP request; only available in web-aware contexts.
+Session Scope — A new bean instance is created for every HTTP session; only available in web-aware contexts.
+Bean Lifecycle — The sequence of events from bean instantiation, dependency injection, initialization, use, to destruction.
+InitializingBean — Interface whose afterPropertiesSet() method is called by Spring after all properties are set.
+DisposableBean — Interface whose destroy() method is called by Spring before the bean is removed from the container.
+Spring AOP — Aspect-Oriented Programming support in Spring for modularizing cross-cutting concerns like logging and security.
+Aspect — A module encapsulating cross-cutting concerns (e.g., logging, transaction management) separate from business logic.
+Advice — The action taken by an aspect at a particular join point (e.g., before, after, or around method execution).
+Join Point — A specific point during execution (e.g., a method call) where an aspect's advice can be applied.
+Pointcut — An expression that matches one or more join points, defining where advice should be applied.
+Before Advice — Advice that executes before the matched method is invoked, without the ability to prevent it.
+After Advice — Advice that executes after the matched method completes (whether normally or with an exception).
+Around Advice — Most powerful advice type that wraps method execution and can control whether the method runs at all.
 Spring MVC — Web framework implementing Model-View-Controller pattern.
-DispatcherServlet — Front controller handling all incoming requests.
+DispatcherServlet — Central front controller in Spring MVC that receives all requests and delegates to the appropriate handler.
 Model — Holds application/business data.
 View — UI representation of application data.
 Controller — Handles user requests and responses.
-Handler Mapping — Maps request URL to controller method.
-View Resolver — Resolves logical view names to actual pages.
-Spring JDBC — Simplifies JDBC database operations.
+Handler Mapping — Maps incoming request URLs to the correct controller method based on annotations or configuration.
+View Resolver — Translates a logical view name returned by a controller into an actual view resource (e.g., JSP, Thymeleaf).
+Spring JDBC — Spring module that simplifies plain JDBC code by removing repetitive boilerplate around connections and exceptions.
 JdbcTemplate — Helper class reducing JDBC boilerplate code.
-Transaction Management — Managing DB operations atomically.
-@Transactional — Enables declarative transaction management.
-Propagation — Defines transaction behavior when nested transactions occur.
-Isolation Level — Controls transaction visibility among concurrent transactions.
-Spring ORM — Integration support for ORM frameworks like Hibernate.
+Transaction Management — Spring's ability to manage ACID database transactions declaratively or programmatically.
+@Transactional — Declarative annotation for wrapping methods in a Spring-managed transaction with rollback support.
+Propagation — Defines how transactions behave when one transactional method calls another (e.g., REQUIRED, REQUIRES_NEW).
+Isolation Level — Defines how visible uncommitted changes of one transaction are to other concurrent transactions.
+Spring ORM — Integration module providing support for JPA, Hibernate, and JDO within the Spring ecosystem.
 Spring Security — Framework for authentication and authorization.
-Authentication — Verifying user identity.
-Authorization — Checking user access permissions.
-JWT Authentication — Stateless authentication using JSON Web Tokens.
-CSRF — Attack tricking users into unwanted actions.
-Spring Batch — Framework for large-scale batch processing.
-Spring Integration — Supports enterprise integration patterns.
-Spring Cloud — Tools for distributed microservices architecture.
+Authentication — The process of verifying who a user is (e.g., validating username and password).
+Authorization — The process of determining what an authenticated user is allowed to do or access.
+JWT Authentication — Stateless authentication mechanism where a signed JWT token is passed with each request, avoiding server-side sessions.
+CSRF — Cross-Site Request Forgery attack where a malicious site tricks a logged-in user's browser into making an unwanted request.
+Spring Batch — Framework for building robust batch processing jobs with features like chunking, retry, skip, and restart.
+Spring Integration — Framework for building enterprise integration patterns like messaging, routing, and transformation.
+Spring Cloud — Collection of tools for microservices patterns including distributed configuration, service discovery, and circuit breakers.
 Spring Boot — Simplifies Spring application setup with auto configuration.
 Spring Profiles — Environment-specific bean/configuration management.
 @Profile — Activates beans for specific environment.
 Property Source — Externalized configuration source.
-Environment Object — Provides access to application properties and profiles.
+Environment Object — Spring abstraction providing access to properties from application.properties, environment variables, and profiles.
 Event Listener — Handles application events asynchronously/synchronously.
-@EventListener — Annotation for listening application events.
-REST API — Stateless web services using HTTP protocols.
-SOAP — XML-based protocol for web services.
-Interceptor — Pre/post processing of HTTP requests.
-Filter — Servlet component intercepting requests/responses before Spring processing.
+@EventListener — Marks a method to be invoked when a specific application event is published in the context.
+REST API — Architectural style using HTTP verbs (GET, POST, PUT, DELETE) and stateless requests for web service communication.
+SOAP — XML-based messaging protocol for exchanging structured information in web services over HTTP or other protocols.
+Interceptor — A Spring component (HandlerInterceptor) that intercepts HTTP requests before and after controller processing.
+Filter — A Java Servlet component that intercepts requests and responses before they reach the Spring DispatcherServlet.
 Exception Handling — Managing application errors gracefully.
-@ControllerAdvice — Global exception handling across controllers.
-@ExceptionHandler — Handles specific exceptions in controllers.
-Spring Cache — Caching abstraction improving performance.
-@Cacheable — Stores method results in cache.
-Scheduling — Running tasks at fixed intervals/time.
-@Scheduled — Schedules task execution automatically.
-Async Processing — Running tasks asynchronously in background threads.
-@Async — Enables asynchronous method execution.
+@ControllerAdvice — Defines a global exception handler, data binder, or model attribute provider across all controllers.
+@ExceptionHandler — Inside @ControllerAdvice or a controller, handles a specific exception and returns a custom response.
+Spring Cache — Abstraction layer that transparently applies caching to method results using providers like Redis or EhCache.
+@Cacheable — Intercepts a method call and returns a cached result if available; invokes the method and caches on first call.
+Scheduling — Running tasks at defined intervals or cron expressions using Spring's built-in task scheduling support.
+@Scheduled — Triggers a Spring-managed method at fixed rate, fixed delay, or cron expression automatically.
+Async Processing — Executing long-running or I/O-heavy tasks in background threads without blocking the main thread.
+@Async — Tells Spring to execute the annotated method asynchronously in a separate thread from a TaskExecutor.
 
 Design Pattern
 =======================
