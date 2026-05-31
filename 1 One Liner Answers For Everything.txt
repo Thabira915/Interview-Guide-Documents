@@ -1576,3 +1576,104 @@ O — Open Closed Principle — Open for extension but closed for modification.
 L — Liskov Substitution Principle — Child classes should replace parent classes without breaking behavior.
 I — Interface Segregation Principle — Clients should not depend on unused methods.
 D — Dependency Inversion Principle — Depend on abstractions, not concrete implementations.
+
+Java + Spring Boot + Microservices Production Issues (One-Liner Answers)
+Application Issues
+Application not starting — Check startup logs for bean/configuration errors.
+Port already in use — Identify process and free/change port.
+High application startup time — Analyze bean initialization and external calls.
+Application crashing frequently — Check logs, heap dumps, and resource usage.
+OutOfMemoryError — Increase heap or fix memory leak.
+StackOverflowError — Fix infinite recursion or circular calls.
+High CPU usage — Analyze thread dumps and CPU-intensive code.
+High memory usage — Check object retention and heap dump analysis.
+Database Issues
+Database connection exhausted — Increase pool size or fix connection leaks.
+Slow query — Analyze execution plan and add proper indexes.
+Deadlock detected — Reduce lock scope and optimize transaction order.
+Database CPU high — Tune queries and indexing strategy.
+Connection timeout — Verify DB availability and connection pool settings.
+N+1 Query Problem — Use fetch joins or batch fetching.
+Too many DB calls — Introduce caching and batch processing.
+Table lock issue — Reduce transaction duration and optimize queries.
+Microservices Issues
+Service-to-service call failure — Check network, DNS, and service health.
+Service unavailable (503) — Verify pods/instances are healthy.
+Increased latency between services — Analyze network and downstream dependencies.
+Cascading failure — Implement circuit breaker pattern.
+Service discovery failure — Verify registry and service registration.
+Version compatibility issue — Use backward-compatible APIs.
+Distributed transaction failure — Implement Saga pattern.
+Duplicate request processing — Use idempotency keys.
+REST API Issues
+API response slow — Check DB queries, external calls, and caching.
+Frequent 500 errors — Analyze application logs and exception traces.
+Frequent 404 errors — Verify API routes and gateway configuration.
+Request timeout — Optimize processing or increase timeout.
+Payload too large — Compress data or paginate responses.
+API rate limit exceeded — Implement throttling and rate limiting.
+Kafka Issues
+Consumer lag increasing — Scale consumers or optimize processing.
+Messages not consumed — Verify consumer group and offsets.
+Messages duplicated — Implement idempotent processing.
+Messages lost — Verify ACK settings and replication factor.
+Consumer rebalance frequently — Tune session timeout and heartbeat.
+Partition skew — Improve partition key selection.
+Producer timeout — Check broker health and network latency.
+Broker down — Verify replication and failover setup.
+Cache Issues
+Cache not updating — Verify cache eviction strategy.
+Cache stale data — Configure proper TTL.
+Low cache hit ratio — Cache frequently accessed data.
+Redis memory full — Increase memory or configure eviction policy.
+Cache stampede — Use distributed locking or cache warming.
+Kubernetes Issues
+Pod CrashLoopBackOff — Check application logs and startup failures.
+Pod OOMKilled — Increase memory limits or optimize memory usage.
+Pod pending — Verify node resources and scheduling constraints.
+Service not reachable — Check service selector and endpoints.
+Ingress not working — Verify ingress rules and controller health.
+Too many pod restarts — Check health checks and application stability.
+Node pressure issue — Scale cluster or optimize resources.
+AWS Issues
+EC2 CPU high — Scale instance or optimize application.
+RDS slow performance — Analyze queries and increase resources.
+S3 access denied — Verify IAM roles and bucket policies.
+Lambda timeout — Optimize execution or increase timeout.
+SQS backlog growing — Scale consumers.
+SNS notification failure — Verify subscriptions and permissions.
+MSK broker issue — Check broker health and replication.
+Security Issues
+JWT token invalid — Verify secret key and expiration.
+Authentication failure — Check credentials and identity provider.
+Authorization failure (403) — Verify roles and permissions.
+Secrets exposed — Move secrets to Secret Manager/Vault.
+SSL certificate expired — Renew certificate before expiration.
+CI/CD Issues
+Build failure — Check compilation and dependency errors.
+Deployment failure — Verify configuration and environment variables.
+Pipeline stuck — Check runner/agent health.
+Rollback required — Revert to last stable release.
+Configuration mismatch — Externalize configs and validate environments.
+Monitoring Issues
+Application down — Check health endpoint and logs.
+No logs visible — Verify logging configuration and collectors.
+Alerts not triggered — Validate alert rules and thresholds.
+High error rate — Analyze exceptions and failing endpoints.
+Slow response time — Check DB, cache, and external dependencies.
+Top 15 Most Asked Production Issues
+OutOfMemoryError → Analyze heap dump.
+High CPU → Analyze thread dump.
+Slow API → Check DB queries and external calls.
+DB Connection Pool Exhausted → Fix connection leak.
+Deadlock → Optimize transaction order.
+Consumer Lag → Scale Kafka consumers.
+Kafka Duplicate Messages → Make consumer idempotent.
+Service Timeout → Circuit breaker + retry.
+Cache Stale Data → Proper TTL strategy.
+Pod CrashLoopBackOff → Check startup logs.
+Pod OOMKilled → Increase memory or optimize code.
+503 Service Unavailable → Verify pod health and load balancing.
+Deployment Failure → Verify configs and secrets.
+SSL Certificate Expired → Renew certificates proactively.
+Cascading Failure → Circuit breaker + bulkhead pattern.
